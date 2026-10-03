@@ -1,0 +1,955 @@
+<title>אוטומציה למשרד הנדסה</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --bg:#F1F3F5;
+    --surface:#FFFFFF;
+    --surface-sunken:#E6E9ED;
+    --border:#D3D8DE;
+    --text:#141B24;
+    --text-muted:#5B6572;
+    --accent:#1F4E79;
+    --accent-strong:#15395C;
+    --accent-soft:#E3ECF3;
+    --amber:#B5700E;
+    --amber-soft:#FAEEDC;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#10151C;
+      --surface:#182029;
+      --surface-sunken:#1E2733;
+      --border:#2B3542;
+      --text:#ECEEF1;
+      --text-muted:#9AA7B4;
+      --accent:#5C98C7;
+      --accent-strong:#7FB0DA;
+      --accent-soft:#1C2E3C;
+      --amber:#E0A23D;
+      --amber-soft:#2E2414;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#10151C;
+    --surface:#182029;
+    --surface-sunken:#1E2733;
+    --border:#2B3542;
+    --text:#ECEEF1;
+    --text-muted:#9AA7B4;
+    --accent:#5C98C7;
+    --accent-strong:#7FB0DA;
+    --accent-soft:#1C2E3C;
+    --amber:#E0A23D;
+    --amber-soft:#2E2414;
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    direction: rtl;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "IBM Plex Sans Hebrew","Noto Sans Hebrew",system-ui,sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    padding-inline: 20px;
+    padding-block: 48px;
+  }
+  .page{
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+  h1,h2,h3{
+    font-family: "Frank Ruhl Libre", serif;
+    font-weight: 700;
+    text-wrap: balance;
+    margin: 0;
+    color: var(--text);
+  }
+  .num{ font-family:"IBM Plex Mono",monospace; font-variant-numeric: tabular-nums; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position: relative;
+    padding: 40px 28px;
+    border-radius: 4px;
+    background-image:
+      repeating-linear-gradient(0deg, color-mix(in srgb, var(--accent) 7%, transparent) 0 1px, transparent 1px 32px),
+      repeating-linear-gradient(90deg, color-mix(in srgb, var(--accent) 7%, transparent) 0 1px, transparent 1px 32px);
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:"IBM Plex Mono",monospace;
+    font-size: 12px; letter-spacing: 0.08em;
+    color: var(--accent-strong);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 5px 12px;
+    margin-bottom: 18px;
+  }
+  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background: var(--accent-strong); }
+  .hero h1{ font-size: clamp(28px, 4.5vw, 40px); line-height: 1.25; }
+  .hero p.lede{
+    margin-top: 14px;
+    max-width: 50ch;
+    color: var(--text-muted);
+    font-size: 17px;
+  }
+  .meta-row{
+    display:flex; flex-wrap:wrap; gap: 20px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  .meta-row strong{ color: var(--text); font-weight:600; }
+  .status-chip{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size: 13px; font-weight:600;
+    background: var(--amber-soft); color: var(--amber);
+    border-radius: 999px; padding: 4px 12px;
+  }
+
+  /* ---------- section shell ---------- */
+  section{ display:flex; flex-direction:column; gap: 22px; }
+  .section-head{ display:flex; flex-direction:column; gap:8px; }
+  .section-head .kicker{
+    font-family:"IBM Plex Mono",monospace;
+    font-size: 12px; letter-spacing:0.08em;
+    color: var(--accent-strong); text-transform: uppercase;
+  }
+  .section-head h2{ font-size: 26px; }
+  .lede-text{ color: var(--text-muted); font-size: 15px; max-width: 60ch; }
+
+  /* ---------- principles ---------- */
+  .principles{ display:grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  @media (max-width: 640px){ .principles{ grid-template-columns: 1fr; } }
+  .principle{
+    background: var(--surface); border:1px solid var(--border); border-radius: 10px;
+    padding: 20px; display:flex; flex-direction:column; gap:10px;
+  }
+  .principle .mark{ width:28px; height:28px; border-radius:7px; background:var(--accent-soft); color:var(--accent-strong); display:flex; align-items:center; justify-content:center; font-weight:700; font-family:"IBM Plex Mono",monospace; font-size:13px; }
+  .principle h3{ font-family:"IBM Plex Sans Hebrew"; font-size:16px; font-weight:600; }
+  .principle p{ margin:0; font-size:14px; color:var(--text-muted); }
+
+  /* ---------- agent cards ---------- */
+  .agent-card{
+    background: var(--surface); border:1px solid var(--border); border-radius: 12px;
+    padding: 20px; display:flex; flex-direction:column; gap:12px;
+  }
+  .agent-card h3{ font-size:17px; font-weight:700; font-family:"IBM Plex Sans Hebrew"; display:flex; align-items:center; gap:8px; }
+  .agent-grid{ display:grid; grid-template-columns: repeat(2,1fr); gap:10px 18px; font-size:13.5px; }
+  @media (max-width:560px){ .agent-grid{ grid-template-columns:1fr; } }
+  .agent-grid dt{ color:var(--accent-strong); font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:.03em; }
+  .agent-grid dd{ margin:2px 0 0; color:var(--text); }
+  .agent-grid .boundary{ grid-column: 1 / -1; background:var(--amber-soft); border-radius:8px; padding:10px 12px; color:var(--amber); font-size:13px; }
+
+  /* ---------- phases ---------- */
+  .phase{
+    background: var(--surface); border:1px solid var(--border); border-radius: 12px;
+    padding: 24px; display:flex; flex-direction:column; gap:16px;
+    position: relative;
+  }
+  .phase + .phase{ margin-top: 2px; }
+  .phase-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .phase-id{
+    font-family:"IBM Plex Mono",monospace; font-size:13px; color: var(--accent-strong);
+    display:flex; align-items:center; gap:10px;
+  }
+  .phase-id .big{ font-size: 28px; font-weight:600; color: var(--border); }
+  .phase-title{ font-size:19px; font-weight:700; font-family:"IBM Plex Sans Hebrew"; }
+  .phase-chip{
+    font-size:12px; font-weight:600; border-radius:999px; padding:4px 11px; white-space:nowrap;
+  }
+  .phase-chip.included{ background: var(--accent-soft); color: var(--accent-strong); }
+  .phase-chip.future{ background: var(--surface-sunken); color: var(--text-muted); }
+  .phase ul{ margin:0; padding-inline-start: 20px; display:flex; flex-direction:column; gap:7px; font-size:14px; color: var(--text); }
+  .phase ul .solves{ display:block; font-size:12.5px; color: var(--accent-strong); margin-top:2px; }
+  .phase-foot{
+    display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap;
+    padding-top:14px; border-top:1px dashed var(--border);
+  }
+  .phase-price{ font-family:"IBM Plex Mono",monospace; font-size:22px; font-weight:600; color: var(--text); }
+  .phase-duration{ font-size:13px; color: var(--text-muted); }
+
+  /* ---------- tables ---------- */
+  .table-wrap{ overflow-x:auto; border:1px solid var(--border); border-radius: 10px; }
+  table{ width:100%; border-collapse: collapse; background: var(--surface); font-size: 14px; min-width: 480px; }
+  thead th{
+    background: var(--surface-sunken); text-align: right; font-weight:600;
+    padding: 12px 16px; font-size: 13px; color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  tbody td{ padding: 13px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tbody tr:last-child td{ border-bottom: none; }
+  td.amount, th.amount{ font-family:"IBM Plex Mono",monospace; font-variant-numeric: tabular-nums; }
+  tbody tr.total td{ font-weight:700; background: var(--accent-soft); }
+  td ul.cell-list{ margin:0; padding-inline-start:18px; display:flex; flex-direction:column; gap:6px; }
+
+  .note{
+    font-size: 13.5px; color: var(--text-muted); background: var(--surface-sunken);
+    border-radius: 8px; padding: 14px 16px; border-right: 3px solid var(--accent);
+  }
+
+  footer{
+    display:flex; flex-direction:column; gap:10px;
+    padding-top: 28px; border-top: 1px solid var(--border);
+    font-size: 13px; color: var(--text-muted);
+  }
+
+  /* ---------- flow diagrams (vertical, fit page width, no horizontal scroll) ---------- */
+  .flowfig{ margin:0; }
+  .diagram-wrap{ max-width: 460px; margin: 0 auto; }
+  svg.flow{ display:block; width:100%; height:auto; }
+  .flow .d-box{ fill:var(--surface); stroke:var(--border); stroke-width:1.5; }
+  .flow .d-box.accent{ stroke:var(--accent); stroke-width:2; }
+  .flow .d-box.warn{ stroke:var(--amber); stroke-width:2; }
+  .flow .d-box.agent{ fill:var(--accent-soft); stroke:var(--accent); stroke-width:2; }
+  .flow .d-box.human{ fill:var(--amber-soft); stroke:var(--amber); stroke-width:2; }
+  .flow .d-group-box{ fill:none; stroke:var(--border); stroke-dasharray:4 4; stroke-width:1.5; }
+  .flow .d-actor{ fill:var(--text-muted); font-size:11px; font-family:"IBM Plex Sans Hebrew",sans-serif; }
+  .flow .d-title{ fill:var(--text); font-size:13px; font-weight:600; font-family:"IBM Plex Sans Hebrew",sans-serif; }
+  .flow .d-chip{ fill:var(--surface-sunken); stroke:var(--border); stroke-width:1; }
+  .flow .d-chip.accent{ stroke:var(--accent); }
+  .flow .d-chip.warn{ stroke:var(--amber); }
+  .flow .d-chip-text{ fill:var(--text-muted); font-size:11px; font-family:"IBM Plex Sans Hebrew",sans-serif; }
+  .flow .d-arrow{ stroke:var(--text-muted); stroke-width:1.6; fill:none; }
+  .flow .d-arrow.dashed{ stroke-dasharray:5 4; }
+  .flow .d-arrowhead{ fill:var(--text-muted); }
+  .flow .d-gap-label{ fill:var(--accent-strong); font-size:11px; font-family:"IBM Plex Mono",monospace; }
+  .flow .d-cond{ fill:var(--text-muted); font-size:10.5px; font-family:"IBM Plex Sans Hebrew",sans-serif; }
+  .flow .d-note{ fill:var(--amber); font-size:11px; font-family:"IBM Plex Sans Hebrew",sans-serif; }
+  .flow .d-group-label{ fill:var(--accent-strong); font-size:12px; font-weight:600; font-family:"IBM Plex Sans Hebrew",sans-serif; }
+  figcaption.flow-cap{ margin-top:10px; font-size:13px; color:var(--text-muted); max-width:62ch; }
+
+  @media (max-width: 480px){
+    .hero{ padding: 28px 18px; }
+    section{ gap: 16px; }
+  }
+
+  @media print{
+    :root{ color-scheme: light; }
+    body{ background:#fff; padding: 0 22px; font-size:12.5px; }
+    .page{ max-width:100%; gap:30px; }
+    .hero{ background-image:none; }
+    .phase, .agent-card, .principle, .flowfig, .table-wrap, .note{ break-inside: avoid; page-break-inside: avoid; }
+    a{ color:inherit; text-decoration:none; }
+  }
+</style>
+
+<div class="page">
+
+  <div class="hero">
+    <span class="eyebrow"><span class="dot"></span>הצעת עבודה · מיפוי ופתרון</span>
+    <h1>אוטומציה לניהול, גבייה ותיאום פרויקטים</h1>
+    <p class="lede">מיפוי מלא של התהליכים הקיימים - עם כל הכלים שבהם משתמשים בפועל - ואחריו הצעה ממוקדת לשלב ראשון שסוגר את הפערים הכי כואבים, בלי לגעת בתהליך ההנדסי וההחלטות המקצועיות.</p>
+    <div class="meta-row">
+      <span>הוכן ע"י <strong>גל</strong></span>
+      <span>עבור <strong>משרד תכנון קונסטרוקציה</strong></span>
+      <span class="num">3.10.2026</span>
+      <span class="status-chip">טיוטה לדיון</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <span class="kicker">המצב הקיים</span>
+      <h2>ארבעת התהליכים המרכזיים - כפי שהם רצים היום</h2>
+    </div>
+    <p class="lede-text">
+      לפני שמדברים על פתרונות - כך בדיוק עובדים היום ארבעת התהליכים המרכזיים במשרד, כולל באילו כלים
+      משתמשים בכל שלב: טלפון, מייל, וואטסאפ, תיקיות רשת, אקסל ודפים רשומים ביד.
+    </p>
+
+    <!-- DIAGRAM 1 -->
+    <figure class="flowfig">
+      <div class="diagram-wrap">
+        <svg class="flow" viewBox="0 0 360 760" role="img" aria-label="תרשים: תהליך קבלת בקשה להצעת מחיר, מהפנייה הראשונית ועד שההצעה החתומה מגיעה ללילי">
+          <defs>
+            <marker id="arrowHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path class="d-arrowhead" d="M0,0 L10,5 L0,10 Z"/>
+            </marker>
+          </defs>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,132 L180,188"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,282 L180,338"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,432 L180,488"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,582 L180,638"/>
+
+          <g>
+            <rect class="d-box" x="30" y="38" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="180" y="54" text-anchor="middle">לקוח / אדריכל</text>
+            <text class="d-title" x="180" y="78" text-anchor="middle">פנייה להצעת מחיר</text>
+            <rect class="d-chip" x="125" y="110" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="180" y="125" text-anchor="middle">📞 / 📧</text>
+          </g>
+          <g>
+            <rect class="d-box" x="30" y="188" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="180" y="204" text-anchor="middle">איתי / ירון</text>
+            <text class="d-title" x="180" y="228" text-anchor="middle">הכנת הצעת מחיר</text>
+            <rect class="d-chip" x="125" y="260" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="180" y="275" text-anchor="middle">📄 מסמך</text>
+          </g>
+          <g>
+            <rect class="d-box" x="30" y="338" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="180" y="354" text-anchor="middle">איתי / ירון</text>
+            <text class="d-title" x="180" y="378" text-anchor="middle">שליחה ללקוח</text>
+            <rect class="d-chip" x="125" y="410" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="180" y="425" text-anchor="middle">📧 מייל</text>
+          </g>
+          <g>
+            <rect class="d-box" x="30" y="488" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="180" y="504" text-anchor="middle">לקוח</text>
+            <text class="d-title" x="180" y="528" text-anchor="middle">חתימה והחזרה</text>
+            <rect class="d-chip" x="125" y="560" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="180" y="575" text-anchor="middle">📧 מייל</text>
+          </g>
+          <g>
+            <rect class="d-box" x="30" y="638" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="180" y="654" text-anchor="middle">איתי / ירון</text>
+            <text class="d-title" x="180" y="678" text-anchor="middle">העברה ללילי</text>
+            <rect class="d-chip" x="125" y="710" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="180" y="725" text-anchor="middle">📧 מייל</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption class="flow-cap">1 · קבלת בקשה להצעת מחיר - מהפנייה הראשונית ועד שההצעה החתומה מגיעה ללילי, כולו דרך טלפון, מייל ומסמכי Word בודדים.</figcaption>
+    </figure>
+
+    <!-- DIAGRAM 2 -->
+    <figure class="flowfig">
+      <div class="diagram-wrap">
+        <svg class="flow" viewBox="0 0 430 1060" role="img" aria-label="תרשים: תהליך קבלת הזמנה, תמחור ומעקב תשלום, מהצעה חתומה ועד הפקת קבלה">
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,152 L330,218"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,152 L170,218"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M330,312 L250,378"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M170,312 L250,378"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,472 L250,538"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,632 L330,698"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,632 L170,698"/>
+          <text class="d-cond" x="300" y="675" text-anchor="middle">שולם ✓</text>
+          <text class="d-cond" x="205" y="675" text-anchor="middle">לא שולם</text>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M330,792 L250,938"/>
+          <path class="d-arrow dashed" marker-end="url(#arrowHead)" d="M100,730 L40,730 L40,570 L100,570"/>
+          <text class="d-gap-label" x="40" y="650" text-anchor="middle" transform="rotate(-90 40 650)">בדיקה חוזרת</text>
+          <text class="d-note" x="250" y="808" text-anchor="middle">⚠ אין בקרה נוספת מעבר לזה</text>
+
+          <g>
+            <rect class="d-box" x="100" y="58" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="250" y="74" text-anchor="middle">לילי</text>
+            <text class="d-title" x="250" y="98" text-anchor="middle">קבלת ההצעה החתומה</text>
+            <rect class="d-chip" x="195" y="130" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="250" y="145" text-anchor="middle">📧 מייל</text>
+          </g>
+          <g>
+            <rect class="d-box" x="260" y="218" width="140" height="64" rx="10"/>
+            <text class="d-actor" x="330" y="233" text-anchor="middle">איתי (מחשב מרכזי)</text>
+            <text class="d-title" x="330" y="251" text-anchor="middle">תיקייה ב-projects</text>
+            <text class="d-title" x="330" y="267" text-anchor="middle">נפתחת</text>
+            <rect class="d-chip" x="280" y="290" width="100" height="22" rx="11"/>
+            <text class="d-chip-text" x="330" y="305" text-anchor="middle">📁 תיקייה</text>
+          </g>
+          <g>
+            <rect class="d-box" x="100" y="218" width="140" height="64" rx="10"/>
+            <text class="d-actor" x="170" y="233" text-anchor="middle">לילי</text>
+            <text class="d-title" x="170" y="251" text-anchor="middle">תיקייה בכספים</text>
+            <text class="d-title" x="170" y="267" text-anchor="middle">נפתחת, שם זהה</text>
+            <rect class="d-chip" x="120" y="290" width="100" height="22" rx="11"/>
+            <text class="d-chip-text" x="170" y="305" text-anchor="middle">📁 תיקייה</text>
+          </g>
+          <g>
+            <rect class="d-box" x="100" y="378" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="250" y="394" text-anchor="middle">לילי</text>
+            <text class="d-title" x="250" y="418" text-anchor="middle">הפקת חשבון חיוב (15%)</text>
+            <rect class="d-chip" x="195" y="450" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="250" y="465" text-anchor="middle">💻 רווחית</text>
+          </g>
+          <g>
+            <rect class="d-box" x="100" y="538" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="250" y="554" text-anchor="middle">רווחית (מערכת)</text>
+            <text class="d-title" x="250" y="578" text-anchor="middle">בדיקת תשלום מול הבנק</text>
+            <rect class="d-chip" x="195" y="610" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="250" y="625" text-anchor="middle">💻 רווחית</text>
+          </g>
+          <g>
+            <rect class="d-box accent" x="260" y="698" width="140" height="64" rx="10"/>
+            <text class="d-actor" x="330" y="713" text-anchor="middle">לילי</text>
+            <text class="d-title" x="330" y="737" text-anchor="middle">סימון ירוק באקסל</text>
+            <rect class="d-chip accent" x="280" y="770" width="100" height="22" rx="11"/>
+            <text class="d-chip-text" x="330" y="785" text-anchor="middle">📊 אקסל</text>
+          </g>
+          <g>
+            <rect class="d-box warn" x="100" y="698" width="140" height="64" rx="10"/>
+            <text class="d-actor" x="170" y="713" text-anchor="middle">לילי</text>
+            <text class="d-title" x="170" y="731" text-anchor="middle">מייל תזכורת</text>
+            <text class="d-title" x="170" y="747" text-anchor="middle">(אחרי שבועות)</text>
+            <rect class="d-chip warn" x="120" y="770" width="100" height="22" rx="11"/>
+            <text class="d-chip-text" x="170" y="785" text-anchor="middle">📧 מייל</text>
+          </g>
+          <g>
+            <rect class="d-box" x="100" y="938" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="250" y="954" text-anchor="middle">לילי</text>
+            <text class="d-title" x="250" y="978" text-anchor="middle">חשבונית/קבלה ושליחה ללקוח</text>
+            <rect class="d-chip" x="195" y="1010" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="250" y="1025" text-anchor="middle">💻 / 📧</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption class="flow-cap">2 · קבלת הזמנה, תמחור ומעקב תשלום - שתי תיקיות נפרדות בשני מחשבים (לכל אחד גיבוי לענן בנפרד, אבל בלי קישור ממשי ביניהן), ובלי בקרה שיטתית על לקוח ששותק.</figcaption>
+    </figure>
+
+    <!-- DIAGRAM 3 -->
+    <figure class="flowfig">
+      <div class="diagram-wrap">
+        <svg class="flow" viewBox="0 0 360 1370" role="img" aria-label="תרשים: תהליך העבודה ומעקב אחרי הלקוח, מחתימת החוזה ועד טופס האיכלוס">
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,132 L260,188"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,132 L100,188"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M260,282 L180,338"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M100,282 L180,338"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,432 L180,488"/>
+          <path class="d-arrow dashed" marker-end="url(#arrowHead)" d="M180,582 L180,718"/>
+          <text class="d-gap-label" x="180" y="655" text-anchor="middle">⏳ שבועות אחר כך</text>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,812 L180,868"/>
+          <path class="d-arrow dashed" marker-end="url(#arrowHead)" d="M180,962 L180,1098"/>
+          <text class="d-gap-label" x="180" y="1035" text-anchor="middle">⏳ חודשים אחר כך</text>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,1192 L260,1248"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,1192 L100,1248"/>
+          <text class="d-cond" x="240" y="1232" text-anchor="middle">שולם ✓</text>
+          <text class="d-cond" x="130" y="1232" text-anchor="middle">לא שולם</text>
+
+          <g>
+            <rect class="d-box" x="30" y="38" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="180" y="54" text-anchor="middle">הכל</text>
+            <text class="d-title" x="180" y="78" text-anchor="middle">חוזה נחתם</text>
+            <rect class="d-chip" x="125" y="110" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="180" y="125" text-anchor="middle">📄 חוזה</text>
+          </g>
+          <g>
+            <rect class="d-box" x="190" y="188" width="140" height="64" rx="10"/>
+            <text class="d-actor" x="260" y="203" text-anchor="middle">לילי</text>
+            <text class="d-title" x="260" y="221" text-anchor="middle">תוכניות לפיקוד</text>
+            <text class="d-title" x="260" y="237" text-anchor="middle">העורף</text>
+            <rect class="d-chip" x="210" y="260" width="100" height="22" rx="11"/>
+            <text class="d-chip-text" x="260" y="275" text-anchor="middle">📧 מייל</text>
+          </g>
+          <g>
+            <rect class="d-box" x="30" y="188" width="140" height="64" rx="10"/>
+            <text class="d-actor" x="100" y="203" text-anchor="middle">יובל</text>
+            <text class="d-title" x="100" y="221" text-anchor="middle">חישוב סטטי +</text>
+            <text class="d-title" x="100" y="237" text-anchor="middle">דוח קרקע</text>
+            <rect class="d-chip" x="50" y="260" width="100" height="22" rx="11"/>
+            <text class="d-chip-text" x="100" y="275" text-anchor="middle">📧 מייל</text>
+          </g>
+          <g>
+            <rect class="d-box" x="30" y="338" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="180" y="354" text-anchor="middle">הצוות</text>
+            <text class="d-title" x="180" y="378" text-anchor="middle">קבלת תוכניות מהאדריכל</text>
+            <rect class="d-chip" x="125" y="410" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="180" y="425" text-anchor="middle">📧 / 📝</text>
+          </g>
+          <g>
+            <rect class="d-box" x="30" y="488" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="180" y="504" text-anchor="middle">הצוות</text>
+            <text class="d-title" x="180" y="528" text-anchor="middle">אישור מול האדריכל</text>
+            <rect class="d-chip" x="125" y="560" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="180" y="575" text-anchor="middle">📧 מייל</text>
+          </g>
+          <g>
+            <rect class="d-box" x="30" y="718" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="180" y="734" text-anchor="middle">לקוח / קבלן</text>
+            <text class="d-title" x="180" y="758" text-anchor="middle">הזמנת ביקור פיקוח</text>
+            <rect class="d-chip" x="125" y="790" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="180" y="805" text-anchor="middle">📞 / 📧</text>
+          </g>
+          <g>
+            <rect class="d-box" x="30" y="868" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="180" y="884" text-anchor="middle">ירון</text>
+            <text class="d-title" x="180" y="908" text-anchor="middle">יומן ושיבוץ עבודה</text>
+            <rect class="d-chip" x="125" y="940" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="180" y="955" text-anchor="middle">📝 / 💬</text>
+          </g>
+          <g>
+            <rect class="d-box" x="30" y="1098" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="180" y="1114" text-anchor="middle">ירון / לילי</text>
+            <text class="d-title" x="180" y="1138" text-anchor="middle">בדיקת תשלום לפני חתימה</text>
+            <rect class="d-chip" x="125" y="1170" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="180" y="1185" text-anchor="middle">📞 פנימי</text>
+          </g>
+          <g>
+            <rect class="d-box accent" x="190" y="1248" width="140" height="64" rx="10"/>
+            <text class="d-actor" x="260" y="1263" text-anchor="middle">ירון</text>
+            <text class="d-title" x="260" y="1281" text-anchor="middle">חתימת טפסים</text>
+            <text class="d-title" x="260" y="1297" text-anchor="middle">ושליחה</text>
+            <rect class="d-chip accent" x="210" y="1320" width="100" height="22" rx="11"/>
+            <text class="d-chip-text" x="260" y="1335" text-anchor="middle">📄 מסמך</text>
+          </g>
+          <g>
+            <rect class="d-box warn" x="30" y="1248" width="140" height="64" rx="10"/>
+            <text class="d-actor" x="100" y="1263" text-anchor="middle">לילי</text>
+            <text class="d-title" x="100" y="1281" text-anchor="middle">דרישת תשלום</text>
+            <text class="d-title" x="100" y="1297" text-anchor="middle">קודם</text>
+            <rect class="d-chip warn" x="50" y="1320" width="100" height="22" rx="11"/>
+            <text class="d-chip-text" x="100" y="1335" text-anchor="middle">📧 מייל</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption class="flow-cap">3 · תהליך העבודה ומעקב אחרי הלקוח - מחתימת החוזה ועד טופס האיכלוס, על פני חודשים, כולו מתואם בטלפון, וואטסאפ ודף רשום ביד.</figcaption>
+    </figure>
+
+    <!-- DIAGRAM 4 -->
+    <figure class="flowfig">
+      <div class="diagram-wrap">
+        <svg class="flow" viewBox="0 0 430 720" role="img" aria-label="תרשים: תהליך התנהלות הכספים, המחזור החודשי החוזר על עצמו">
+          <text class="d-group-label" x="250" y="30" text-anchor="middle">משימות חודשיות קבועות (מגובות לענן, אך בלי מערכת אחת)</text>
+          <rect class="d-group-box" x="90" y="55" width="320" height="130" rx="10"/>
+          <text class="d-group-label" x="250" y="210" text-anchor="middle">מחזור הגבייה - חוזר על עצמו לכל לקוח ולכל שלב תשלום</text>
+
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,342 L330,398"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,342 L170,398"/>
+          <text class="d-cond" x="300" y="382" text-anchor="middle">שולם ✓</text>
+          <text class="d-cond" x="205" y="382" text-anchor="middle">לא שולם</text>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M330,492 L250,598"/>
+          <path class="d-arrow dashed" marker-end="url(#arrowHead)" d="M100,430 L40,430 L40,280 L100,280"/>
+          <text class="d-gap-label" x="40" y="355" text-anchor="middle" transform="rotate(-90 40 355)">בדיקה חוזרת</text>
+          <text class="d-note" x="250" y="508" text-anchor="middle">⚠ בלי טריגר שיטתי שמזהה התעלמות</text>
+
+          <g>
+            <rect class="d-box" x="260" y="78" width="140" height="64" rx="10"/>
+            <text class="d-actor" x="330" y="94" text-anchor="middle">לילי</text>
+            <text class="d-title" x="330" y="112" text-anchor="middle">הנהלת חשבונות</text>
+            <text class="d-title" x="330" y="128" text-anchor="middle">ותלושי שכר</text>
+            <rect class="d-chip" x="280" y="150" width="100" height="22" rx="11"/>
+            <text class="d-chip-text" x="330" y="165" text-anchor="middle">💻 רווחית</text>
+          </g>
+          <g>
+            <rect class="d-box" x="100" y="78" width="140" height="64" rx="10"/>
+            <text class="d-actor" x="170" y="94" text-anchor="middle">לילי</text>
+            <text class="d-title" x="170" y="112" text-anchor="middle">דיווחי פיקוד</text>
+            <text class="d-title" x="170" y="128" text-anchor="middle">העורף</text>
+            <rect class="d-chip" x="120" y="150" width="100" height="22" rx="11"/>
+            <text class="d-chip-text" x="170" y="165" text-anchor="middle">📄 דיווח</text>
+          </g>
+          <g>
+            <rect class="d-box" x="100" y="280" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="250" y="296" text-anchor="middle">לילי / רווחית</text>
+            <text class="d-title" x="250" y="320" text-anchor="middle">בדיקת תשלומים מול הבנק</text>
+            <rect class="d-chip" x="195" y="352" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="250" y="367" text-anchor="middle">💻 רווחית</text>
+          </g>
+          <g>
+            <rect class="d-box accent" x="260" y="398" width="140" height="64" rx="10"/>
+            <text class="d-actor" x="330" y="413" text-anchor="middle">לילי</text>
+            <text class="d-title" x="330" y="431" text-anchor="middle">סימון ירוק</text>
+            <text class="d-title" x="330" y="447" text-anchor="middle">באקסל + בדף</text>
+            <rect class="d-chip accent" x="280" y="470" width="100" height="22" rx="11"/>
+            <text class="d-chip-text" x="330" y="485" text-anchor="middle">📊 אקסל</text>
+          </g>
+          <g>
+            <rect class="d-box warn" x="100" y="398" width="140" height="64" rx="10"/>
+            <text class="d-actor" x="170" y="413" text-anchor="middle">לילי</text>
+            <text class="d-title" x="170" y="431" text-anchor="middle">תזכורת, ואז</text>
+            <text class="d-title" x="170" y="447" text-anchor="middle">טלפון אם מתעלם</text>
+            <rect class="d-chip warn" x="120" y="470" width="100" height="22" rx="11"/>
+            <text class="d-chip-text" x="170" y="485" text-anchor="middle">📧 / 📞</text>
+          </g>
+          <g>
+            <rect class="d-box" x="100" y="598" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="250" y="614" text-anchor="middle">לילי</text>
+            <text class="d-title" x="250" y="638" text-anchor="middle">חשבונית/קבלה ושליחה</text>
+            <rect class="d-chip" x="195" y="670" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="250" y="685" text-anchor="middle">💻 רווחית</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption class="flow-cap">4 · תהליך התנהלות הכספים - מחזור שחוזר על עצמו לכל לקוח ולכל שלב תשלום (15% / 70% / 15%), בלי מערכת שמזהה לבד מי לא שילם.</figcaption>
+    </figure>
+
+    <div class="section-head" style="margin-top:8px;">
+      <span class="kicker">מה שעולה מהמיפוי</span>
+      <h2>הבעיות המרכזיות בכל תהליך</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>תהליך</th><th>הבעיות שהמיפוי חושף</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>1 · קבלת בקשה להצעת מחיר</td>
+            <td><ul class="cell-list">
+              <li>אין מעקב כתוב על בקשות שנשלחו ולא נענו - הכול חי בתיבת מייל בודדת</li>
+              <li>פרטי הלקוח והפרויקט קיימים רק בתוך קובץ המסמך עצמו, לא במקום מחפש</li>
+              <li>אין שום מעקב אחרי הצעות שנשלחו ולא הבשילו לפרויקט - ואין תיעוד של הסיבה</li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td>2 · קבלת הזמנה, תמחור ומעקב תשלום</td>
+            <td><ul class="cell-list">
+              <li>כפילות ידנית: כל פרויקט נפתח פעמיים, בשני מחשבים שונים, באותו שם - בלי קישור ממשי בין התיקיות</li>
+              <li>כל מחשב מגובה לענן בנפרד, אבל אין מערכת אחת: טעות הקלדה בשם התיקייה משאירה את שתי הגרסאות לא מסונכרנות, ואף אחד לא בודק את זה</li>
+              <li>"אין בקרה נוספת" מעבר למייל תזכורת אחד - לקוח ששותק נשאר תלוי באוויר</li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td>3 · תהליך העבודה ומעקב אחרי הלקוח</td>
+            <td><ul class="cell-list">
+              <li>רישום פרויקטים חדשים נעשה על דף פיזי - לא מתגבה ותלוי שמישהו יזכור לעדכן</li>
+              <li>תיאום ביקורי פיקוח מתבצע כולו בטלפון ובוואטסאפ, בלי יומן משותף אמיתי</li>
+              <li>חתימת טפסי הגמר תלויה בבדיקה ידנית מול לילי בכל פעם מחדש</li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td>4 · תהליך התנהלות הכספים</td>
+            <td><ul class="cell-list">
+              <li>הגבייה חוזרת על עצמה בנפרד לכל שלב תשלום ולכל לקוח, בלי מערכת שעושה את זה אוטומטית</li>
+              <li>סימון ירוק באקסל הוא התיעוד היחיד שקיים על מי שילם</li>
+              <li>אין טריגר שיטתי שמזהה לקוח שמתעלם - זה קורה רק "אם מרימים טלפון"</li>
+            </ul></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="kicker">הפתרון המוצע</span>
+      <h2>שלושה סוכנים, בגבול מוגדר</h2>
+    </div>
+    <p class="lede-text">
+      הפתרון לא מחליף אף אחד מהעובדים ולא נוגע בחתימה ההנדסית. שלושה סוכני AI נכנסים בדיוק בנקודות הכשל
+      שמופו למעלה - אחד עוקב אחרי הצעות מחיר שנשלחו ולא הבשילו, אחד בקצה הקליטה, ואחד בקצה הגבייה - וכל
+      אחד מהם מוסיף מידע ומכין טיוטות, אבל אף פעולה סופית (שליחה, חתימה, אישור תשלום) לא קורית בלי שבן אדם
+      ראה אותה.
+    </p>
+
+    <!-- AGENT DIAGRAM C -->
+    <div class="agent-card">
+      <h3>🤖 סוכן מעקב סטטוס הצעות מחיר</h3>
+      <figure class="flowfig">
+        <div class="diagram-wrap">
+          <svg class="flow" viewBox="0 0 360 910" role="img" aria-label="תרשים פתרון: מעקב סטטוס הצעות מחיר, מי זכינו ומי לא ולמה">
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,132 L180,188"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,282 L260,338"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,282 L100,338"/>
+            <text class="d-cond" x="235" y="322" text-anchor="middle">✓ חתימה</text>
+            <text class="d-cond" x="130" y="322" text-anchor="middle">❓ לא</text>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M100,432 L180,488"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,582 L180,638"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,732 L180,788"/>
+
+            <g>
+              <rect class="d-box" x="30" y="38" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="54" text-anchor="middle">איתי / ירון</text>
+              <text class="d-title" x="180" y="78" text-anchor="middle">הצעת מחיר נשלחה ללקוח</text>
+              <rect class="d-chip" x="125" y="110" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="125" text-anchor="middle">📧 מייל</text>
+            </g>
+            <g>
+              <rect class="d-box agent" x="30" y="188" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="204" text-anchor="middle">🤖 סוכן מעקב</text>
+              <text class="d-title" x="180" y="228" text-anchor="middle">עוקב X ימים אחרי השליחה</text>
+              <rect class="d-chip" x="125" y="260" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="275" text-anchor="middle">⚙ אוטומטי</text>
+            </g>
+            <g>
+              <rect class="d-box accent" x="190" y="338" width="140" height="64" rx="10"/>
+              <text class="d-actor" x="260" y="354" text-anchor="middle">התקבלה חתימה</text>
+              <text class="d-title" x="260" y="378" text-anchor="middle">ממשיך לתהליך הרגיל</text>
+              <rect class="d-chip accent" x="210" y="410" width="100" height="22" rx="11"/>
+              <text class="d-chip-text" x="260" y="425" text-anchor="middle">✓ המשך</text>
+            </g>
+            <g>
+              <rect class="d-box warn" x="30" y="338" width="140" height="64" rx="10"/>
+              <text class="d-actor" x="100" y="354" text-anchor="middle">אין תשובה /</text>
+              <text class="d-title" x="100" y="378" text-anchor="middle">ההצעה נדחתה</text>
+              <rect class="d-chip warn" x="50" y="410" width="100" height="22" rx="11"/>
+              <text class="d-chip-text" x="100" y="425" text-anchor="middle">❓ ממתין</text>
+            </g>
+            <g>
+              <rect class="d-box agent" x="30" y="488" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="504" text-anchor="middle">🤖 סוכן מעקב</text>
+              <text class="d-title" x="180" y="528" text-anchor="middle">פונה ללקוח לשאול מה הסיבה</text>
+              <rect class="d-chip" x="125" y="560" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="575" text-anchor="middle">📧 מייל</text>
+            </g>
+            <g>
+              <rect class="d-box agent" x="30" y="638" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="654" text-anchor="middle">🤖 סוכן מעקב</text>
+              <text class="d-title" x="180" y="678" text-anchor="middle">מתעד את הסיבה במסד הנתונים</text>
+              <rect class="d-chip" x="125" y="710" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="725" text-anchor="middle">💻 מסד אחד</text>
+            </g>
+            <g>
+              <rect class="d-box human" x="30" y="788" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="804" text-anchor="middle">👤 הצוות</text>
+              <text class="d-title" x="180" y="828" text-anchor="middle">סוקר תקופתית ומסיק מסקנות</text>
+              <rect class="d-chip warn" x="125" y="860" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="875" text-anchor="middle">✓ ניתוח אנושי</text>
+            </g>
+          </svg>
+        </div>
+      </figure>
+      <dl class="agent-grid">
+        <div><dt>מטרה</dt><dd>לדעת על כל הצעת מחיר שנשלחה אם התקבלה או לא, ולמה - כדי לצבור מידע שיעזור לשפר את אחוז הסגירה בהמשך</dd></div>
+        <div><dt>קלט</dt><dd>הצעות מחיר שנשלחו + תשובת הלקוח (או שקט מצידו)</dd></div>
+        <div><dt>פלט</dt><dd>סטטוס "התקבלה / לא התקבלה" לכל הצעה, סיבת דחייה מתועדת, ודוח מגמות תקופתי לצוות</dd></div>
+        <div class="boundary"><strong>גבול אחריות:</strong> הסוכן לא מחליט מה לשנות בתמחור או בעבודה - הוא רק אוסף ומתעד את המידע. ההחלטה האסטרטגית נשארת של הצוות.</div>
+      </dl>
+    </div>
+
+    <!-- AGENT DIAGRAM A -->
+    <div class="agent-card">
+      <h3>🤖 סוכן קליטת פרויקטים</h3>
+      <figure class="flowfig">
+        <div class="diagram-wrap">
+          <svg class="flow" viewBox="0 0 360 900" role="img" aria-label="תרשים פתרון: סוכן קליטת פרויקטים, ממייל האדריכל ועד אישור אנושי לשליחה">
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,132 L180,188"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,282 L180,338"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,432 L180,488"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,582 L180,638"/>
+
+            <g>
+              <rect class="d-box" x="30" y="38" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="54" text-anchor="middle">אדריכל</text>
+              <text class="d-title" x="180" y="78" text-anchor="middle">שולח תוכניות / בקשה במייל</text>
+              <rect class="d-chip" x="125" y="110" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="125" text-anchor="middle">📧 מייל</text>
+            </g>
+            <g>
+              <rect class="d-box agent" x="30" y="188" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="204" text-anchor="middle">🤖 סוכן קליטה</text>
+              <text class="d-title" x="180" y="228" text-anchor="middle">קורא את המייל ושולף פרטים</text>
+              <rect class="d-chip" x="125" y="260" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="275" text-anchor="middle">⚙ אוטומטי</text>
+            </g>
+            <g>
+              <rect class="d-box agent" x="30" y="338" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="354" text-anchor="middle">🤖 סוכן קליטה</text>
+              <text class="d-title" x="180" y="378" text-anchor="middle">פותח רשומה במסד המרכזי</text>
+              <rect class="d-chip" x="125" y="410" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="425" text-anchor="middle">💻 מסד אחד</text>
+            </g>
+            <g>
+              <rect class="d-box agent" x="30" y="488" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="504" text-anchor="middle">🤖 סוכן קליטה</text>
+              <text class="d-title" x="180" y="528" text-anchor="middle">מכין טיוטת מייל אישור לאדריכל</text>
+              <rect class="d-chip" x="125" y="560" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="575" text-anchor="middle">📧 טיוטה</text>
+            </g>
+            <g>
+              <rect class="d-box human" x="30" y="638" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="654" text-anchor="middle">👤 הצוות</text>
+              <text class="d-title" x="180" y="678" text-anchor="middle">בודק, מאשר ושולח בפועל</text>
+              <rect class="d-chip warn" x="125" y="710" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="725" text-anchor="middle">✓ אישור אנושי</text>
+            </g>
+          </svg>
+        </div>
+      </figure>
+      <dl class="agent-grid">
+        <div><dt>מטרה</dt><dd>להחליף את הדף הפיזי ברשומה אחת שנפתחת לבד מכל מייל נכנס מאדריכל</dd></div>
+        <div><dt>קלט</dt><dd>מייל נכנס מאדריכל עם תוכניות / פרטי פרויקט</dd></div>
+        <div><dt>פלט</dt><dd>רשומה חדשה במסד הנתונים + טיוטת מייל אישור, מוכנה לבדיקה</dd></div>
+        <div class="boundary"><strong>גבול אחריות:</strong> הסוכן לא שולח שום מייל בעצמו ולא מחליט על תוכן הנדסי - רק קורא, מתעד ומכין טיוטה.</div>
+      </dl>
+    </div>
+
+    <!-- AGENT DIAGRAM B -->
+    <div class="agent-card">
+      <h3>🤖 סוכן מעקב גבייה</h3>
+      <figure class="flowfig">
+        <div class="diagram-wrap">
+          <svg class="flow" viewBox="0 0 430 630" role="img" aria-label="תרשים פתרון: סוכן מעקב גבייה, כולל התאמת הודעות וואטסאפ מהבנק לתיק הלקוח, ועד אישור לילי לשליחה">
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M330,142 L250,198"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M170,142 L250,198"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,292 L330,348"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,292 L170,348"/>
+            <text class="d-cond" x="305" y="316" text-anchor="middle">שולם ✓</text>
+            <text class="d-cond" x="200" y="316" text-anchor="middle">לא שולם</text>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M330,428 L250,510"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M170,428 L250,510"/>
+            <text class="d-note" x="170" y="444" text-anchor="middle">⏱ אחרי X ימים בלי</text>
+            <text class="d-note" x="170" y="459" text-anchor="middle">מענה → מתריע לאדם</text>
+            <text class="d-note" x="330" y="444" text-anchor="middle">🤝 לא ברור לאיזה תיק?</text>
+            <text class="d-note" x="330" y="459" text-anchor="middle">לילי מכוונת, הסוכן לומד</text>
+
+            <g>
+              <rect class="d-box" x="260" y="48" width="140" height="64" rx="10"/>
+              <text class="d-actor" x="330" y="64" text-anchor="middle">רווחית (מערכת)</text>
+              <text class="d-title" x="330" y="88" text-anchor="middle">נתוני תשלום מהבנק</text>
+              <rect class="d-chip" x="280" y="120" width="100" height="22" rx="11"/>
+              <text class="d-chip-text" x="330" y="135" text-anchor="middle">💻 / 🏦</text>
+            </g>
+            <g>
+              <rect class="d-box" x="100" y="48" width="140" height="64" rx="10"/>
+              <text class="d-actor" x="170" y="64" text-anchor="middle">בנק (וואטסאפ)</text>
+              <text class="d-title" x="170" y="88" text-anchor="middle">הודעה על כל תנועה</text>
+              <rect class="d-chip" x="120" y="120" width="100" height="22" rx="11"/>
+              <text class="d-chip-text" x="170" y="135" text-anchor="middle">💬 וואטסאפ</text>
+            </g>
+            <g>
+              <rect class="d-box agent" x="100" y="198" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="250" y="214" text-anchor="middle">🤖 סוכן גבייה</text>
+              <text class="d-title" x="250" y="238" text-anchor="middle">בודק תשלום ומתאים לתיק הלקוח</text>
+              <rect class="d-chip" x="195" y="270" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="250" y="285" text-anchor="middle">⚙ אוטומטי</text>
+            </g>
+            <g>
+              <rect class="d-box agent" x="260" y="348" width="140" height="80" rx="10"/>
+              <text class="d-actor" x="330" y="366" text-anchor="middle">🤖 סוכן גבייה</text>
+              <text class="d-title" x="330" y="386" text-anchor="middle">שולם → מעדכן</text>
+              <text class="d-title" x="330" y="402" text-anchor="middle">סטטוס + טיוטת</text>
+              <text class="d-title" x="330" y="418" text-anchor="middle">חשבונית</text>
+            </g>
+            <g>
+              <rect class="d-box agent" x="100" y="348" width="140" height="80" rx="10"/>
+              <text class="d-actor" x="170" y="366" text-anchor="middle">🤖 סוכן גבייה</text>
+              <text class="d-title" x="170" y="386" text-anchor="middle">לא שולם → שולח</text>
+              <text class="d-title" x="170" y="402" text-anchor="middle">תזכורת אוטומטית</text>
+              <text class="d-title" x="170" y="418" text-anchor="middle">ללקוח</text>
+            </g>
+            <g>
+              <rect class="d-box human" x="100" y="510" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="250" y="526" text-anchor="middle">👤 לילי</text>
+              <text class="d-title" x="250" y="550" text-anchor="middle">מאשרת ושולחת חשבונית סופית</text>
+              <rect class="d-chip warn" x="195" y="582" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="250" y="597" text-anchor="middle">✓ אישור אנושי</text>
+            </g>
+          </svg>
+        </div>
+      </figure>
+      <dl class="agent-grid">
+        <div><dt>מטרה</dt><dd>לבדוק יומית מי שילם ומי לא, לכל לקוח ולכל שלב תשלום, ולהתאים כל הפקדה לתיק הנכון - בלי שמישהו "יזכור" לבדוק</dd></div>
+        <div><dt>קלט</dt><dd>סטטוס תשלומים מרווחית + חשבון הבנק, ועדכוני וואטסאפ מהבנק על כל תנועה בחשבון</dd></div>
+        <div><dt>פלט</dt><dd>עדכון סטטוס אוטומטי, תזכורת ללקוח, טיוטת חשבונית/קבלה - ובמקרים לא ברורים, פנייה ללילי להכוונה</dd></div>
+        <div class="boundary"><strong>גבול אחריות:</strong> הסוכן לא שולח חשבונית סופית ולא מחליט לוותר על חוב. כשהוא לא בטוח לאיזה תיק שייכת הפקדה, הוא פונה ללילי במקום לנחש - ולילי מכוונת אותו ומאשרת את השליחה בעצמה.</div>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="kicker">עקרונות</span>
+      <h2>איך זה נבנה</h2>
+    </div>
+    <div class="principles">
+      <div class="principle">
+        <span class="mark">1</span>
+        <h3>אדם מחליט, לא ה-AI</h3>
+        <p>כל חתימה הנדסית וכל אישור תשלום נשארים החלטה אנושית. האוטומציה מכינה מידע, לא מחליטה.</p>
+      </div>
+      <div class="principle">
+        <span class="mark">2</span>
+        <h3>מתחילים קטן</h3>
+        <p>שלב 1 בלבד, על דאטה אמיתי. שלבים 2-3 רק אם זה מוכיח את עצמו בפועל.</p>
+      </div>
+      <div class="principle">
+        <span class="mark">3</span>
+        <h3>מקום אחד למידע</h3>
+        <p>מחליף את הכפילות בין תיקיית projects לתיקיית כספים - בלי לשנות איך העובדים עובדים היום.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="kicker">שלבי העבודה</span>
+      <h2>מה כלול, ומה אפשרי בהמשך</h2>
+    </div>
+
+    <div class="phase">
+      <div class="phase-top">
+        <div class="phase-id"><span class="big">01</span><div><div class="phase-title">קליטת פרויקטים, מעקב גבייה ומעקב הצעות</div><div class="phase-duration">משך הקמה: כ-4-5 שבועות</div></div></div>
+        <span class="phase-chip included">כלול בהצעה זו</span>
+      </div>
+      <ul>
+        <li>מסד נתונים מרכזי אחד לכל פרויקט <span class="solves">פותר את הכפילות ואת הסיכון לטעויות הקלדה בשם התיקייה מתהליך 2</span></li>
+        <li>סוכן קליטה שקורא מיילים נכנסים מאדריכלים, שולף פרטים ופותח רשומה אוטומטית <span class="solves">פותר את הרישום הידני על דף בתהליך 3</span></li>
+        <li>סוכן מעקב גבייה עם תזכורות אוטומטיות לפי שלב תשלום, כולל התאמת הודעות וואטסאפ מהבנק לתיק הלקוח (עם הכוונה של לילי כשלא ברור) <span class="solves">פותר את היעדר הבקרה בתהליכים 2 ו-4</span></li>
+        <li>סוכן מעקב סטטוס הצעות מחיר - מזהה הצעות שלא נחתמו ואוסף את סיבת הדחייה <span class="solves">סוגר פער שלא עלה במיפוי המקורי - היום אין שום מעקב אחרי הצעות שאבדו</span></li>
+      </ul>
+      <div class="phase-foot">
+        <span class="phase-duration">מטרת הסוכנים: להחליף זיכרון אנושי בתיעוד שרץ לבד, בלי לקבל אף החלטה הנדסית. טווח המחיר עודכן לאור ההיקף המורחב</span>
+        <span class="phase-price num"><span dir="ltr">10,000–18,000</span> ₪</span>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-top">
+        <div class="phase-id"><span class="big">02</span><div><div class="phase-title">תיאום ביקורי פיקוח באתר</div><div class="phase-duration">עתידי</div></div></div>
+        <span class="phase-chip future">אופציונלי - בהמשך</span>
+      </div>
+      <ul>
+        <li>יומן משותף במקום טלפון + וואטסאפ בלבד <span class="solves">פותר את תיאום הביקורים בתהליך 3</span></li>
+        <li>שיבוץ אוטומטי לפי עומס, ועדכון יומי לקבוצת הוואטסאפ המשרדית</li>
+      </ul>
+      <div class="phase-foot">
+        <span class="phase-duration">יתומחר בנפרד, רק אחרי שלב 1</span>
+        <span class="phase-price num"><span dir="ltr">10,000–15,000</span> ₪</span>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-top">
+        <div class="phase-id"><span class="big">03</span><div><div class="phase-title">אינטגרציית וואטסאפ עסקי</div><div class="phase-duration">עתידי</div></div></div>
+        <span class="phase-chip future">אופציונלי - בהמשך</span>
+      </div>
+      <ul>
+        <li>תזכורות גבייה ועדכוני תיאום דרך וואטסאפ, לא רק מייל</li>
+        <li>דורש אישור WhatsApp Business API</li>
+      </ul>
+      <div class="phase-foot">
+        <span class="phase-duration">יתומחר בנפרד, רק אחרי שלב 1</span>
+        <span class="phase-price num"><span dir="ltr">10,000–20,000</span> ₪ + שוטף</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="kicker">תמחור ותשלום</span>
+      <h2>שלב 1 - פירוט</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>מתי</th><th>מה מופעל</th><th class="amount">אחוז</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>עם אישור ההצעה</td><td>תחילת עבודה</td><td class="amount">50%</td></tr>
+          <tr><td>עם מסירת שלב 1</td><td>המערכת פעילה ונבדקה על דאטה אמיתי</td><td class="amount">50%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">זו הצעת מחיר בין חברים, לא מחיר שוק מלא - סוכנות חיצונית הייתה מצטטת טווח גבוה יותר על היקף זהה.</p>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="kicker">אחזקה</span>
+      <h2>עלויות שוטפות אחרי ההקמה</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>סעיף</th><th class="amount">עלות חודשית</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>תחזוקה ותיקונים קטנים</td><td class="amount"><span dir="ltr">300–800</span> ₪</td></tr>
+          <tr><td>מנויי כלים (Airtable / n8n)</td><td class="amount">כ-<span dir="ltr">50–150</span> $</td></tr>
+          <tr><td>קריאות AI (Claude API), לפי שימוש בפועל</td><td class="amount">כמה דולרים בודדים</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <span>הוכן ע"י גל · 3.10.2026 · גרסה לדיון, לא הצעה סגורה</span>
+  </footer>
+
+</div>
