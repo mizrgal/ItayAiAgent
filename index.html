@@ -325,27 +325,29 @@
     <!-- DIAGRAM 2 -->
     <figure class="flowfig">
       <div class="diagram-wrap">
-        <svg class="flow" viewBox="0 0 430 1060" role="img" aria-label="תרשים: תהליך קבלת הזמנה, תמחור ומעקב תשלום, מהצעה חתומה ועד הפקת קבלה">
+        <svg class="flow" viewBox="0 0 430 1000" role="img" aria-label="תרשים: תהליך הכספים, מחתימת החוזה ועד קבלה, עם קובץ האקסל המרכזי וסימון אדום-ירוק-כחול">
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,152 L330,218"/>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,152 L170,218"/>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M330,312 L250,378"/>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M170,312 L250,378"/>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,472 L250,538"/>
-          <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,632 L330,698"/>
-          <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,632 L170,698"/>
-          <text class="d-cond" x="300" y="675" text-anchor="middle">שולם ✓</text>
-          <text class="d-cond" x="205" y="675" text-anchor="middle">לא שולם</text>
-          <path class="d-arrow" marker-end="url(#arrowHead)" d="M330,792 L250,938"/>
-          <path class="d-arrow dashed" marker-end="url(#arrowHead)" d="M100,730 L40,730 L40,570 L100,570"/>
-          <text class="d-gap-label" x="40" y="650" text-anchor="middle" transform="rotate(-90 40 650)">בדיקה חוזרת</text>
-          <text class="d-note" x="250" y="808" text-anchor="middle">⚠ אין בקרה נוספת מעבר לזה</text>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,632 L330,688"/>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,632 L170,688"/>
+          <text class="d-cond" x="300" y="660" text-anchor="middle">שולם ✓</text>
+          <text class="d-cond" x="205" y="660" text-anchor="middle">לא שולם</text>
+          <path class="d-arrow" marker-end="url(#arrowHead)" d="M330,782 L250,838"/>
+          <path class="d-arrow dashed" marker-end="url(#arrowHead)" d="M100,720 L40,720 L40,570 L100,570"/>
+          <text class="d-gap-label" x="40" y="645" text-anchor="middle" transform="rotate(-90 40 645)">תזכורת חוזרת</text>
+          <text class="d-note" x="170" y="798" text-anchor="middle">⚠ אין בקרה נוספת מעבר לזה</text>
+          <text class="d-gap-label" x="250" y="950" text-anchor="middle">🔁 חוזר על עצמו: 70% אחרי תוכניות ביצוע,</text>
+          <text class="d-gap-label" x="250" y="966" text-anchor="middle">ו-15% הנותרים בסיום</text>
 
           <g>
             <rect class="d-box" x="100" y="58" width="300" height="64" rx="10"/>
-            <text class="d-actor" x="250" y="74" text-anchor="middle">לילי</text>
-            <text class="d-title" x="250" y="98" text-anchor="middle">קבלת ההצעה החתומה</text>
+            <text class="d-actor" x="250" y="74" text-anchor="middle">הכל</text>
+            <text class="d-title" x="250" y="98" text-anchor="middle">חוזה נחתם</text>
             <rect class="d-chip" x="195" y="130" width="110" height="22" rx="11"/>
-            <text class="d-chip-text" x="250" y="145" text-anchor="middle">📧 מייל</text>
+            <text class="d-chip-text" x="250" y="145" text-anchor="middle">📄 חוזה</text>
           </g>
           <g>
             <rect class="d-box" x="260" y="218" width="140" height="64" rx="10"/>
@@ -366,42 +368,41 @@
           <g>
             <rect class="d-box" x="100" y="378" width="300" height="64" rx="10"/>
             <text class="d-actor" x="250" y="394" text-anchor="middle">לילי</text>
-            <text class="d-title" x="250" y="418" text-anchor="middle">הפקת חשבון חיוב (15%)</text>
+            <text class="d-title" x="250" y="418" text-anchor="middle">רישום בקובץ האקסל המרכזי</text>
             <rect class="d-chip" x="195" y="450" width="110" height="22" rx="11"/>
-            <text class="d-chip-text" x="250" y="465" text-anchor="middle">💻 רווחית</text>
+            <text class="d-chip-text" x="250" y="465" text-anchor="middle">📊 אקסל</text>
           </g>
           <g>
             <rect class="d-box" x="100" y="538" width="300" height="64" rx="10"/>
-            <text class="d-actor" x="250" y="554" text-anchor="middle">רווחית (מערכת)</text>
-            <text class="d-title" x="250" y="578" text-anchor="middle">בדיקת תשלום מול הבנק</text>
+            <text class="d-actor" x="250" y="554" text-anchor="middle">לילי</text>
+            <text class="d-title" x="250" y="578" text-anchor="middle">שליחת דרישת תשלום (15%)</text>
             <rect class="d-chip" x="195" y="610" width="110" height="22" rx="11"/>
-            <text class="d-chip-text" x="250" y="625" text-anchor="middle">💻 רווחית</text>
+            <text class="d-chip-text" x="250" y="625" text-anchor="middle">📧 → 🔴 אדום</text>
           </g>
           <g>
-            <rect class="d-box accent" x="260" y="698" width="140" height="64" rx="10"/>
-            <text class="d-actor" x="330" y="713" text-anchor="middle">לילי</text>
-            <text class="d-title" x="330" y="737" text-anchor="middle">סימון ירוק באקסל</text>
-            <rect class="d-chip accent" x="280" y="770" width="100" height="22" rx="11"/>
-            <text class="d-chip-text" x="330" y="785" text-anchor="middle">📊 אקסל</text>
+            <rect class="d-box accent" x="260" y="688" width="140" height="64" rx="10"/>
+            <text class="d-actor" x="330" y="703" text-anchor="middle">תשלום מתקבל</text>
+            <text class="d-title" x="330" y="727" text-anchor="middle">(בנק / רווחית)</text>
+            <rect class="d-chip accent" x="280" y="760" width="100" height="22" rx="11"/>
+            <text class="d-chip-text" x="330" y="775" text-anchor="middle">📊 → 🟢 ירוק</text>
           </g>
           <g>
-            <rect class="d-box warn" x="100" y="698" width="140" height="64" rx="10"/>
-            <text class="d-actor" x="170" y="713" text-anchor="middle">לילי</text>
-            <text class="d-title" x="170" y="731" text-anchor="middle">מייל תזכורת</text>
-            <text class="d-title" x="170" y="747" text-anchor="middle">(אחרי שבועות)</text>
-            <rect class="d-chip warn" x="120" y="770" width="100" height="22" rx="11"/>
-            <text class="d-chip-text" x="170" y="785" text-anchor="middle">📧 מייל</text>
+            <rect class="d-box warn" x="100" y="688" width="140" height="64" rx="10"/>
+            <text class="d-actor" x="170" y="703" text-anchor="middle">לא משלם →</text>
+            <text class="d-title" x="170" y="727" text-anchor="middle">תזכורת (שבועות)</text>
+            <rect class="d-chip warn" x="120" y="760" width="100" height="22" rx="11"/>
+            <text class="d-chip-text" x="170" y="775" text-anchor="middle">📧 תזכורת</text>
           </g>
           <g>
-            <rect class="d-box" x="100" y="938" width="300" height="64" rx="10"/>
-            <text class="d-actor" x="250" y="954" text-anchor="middle">לילי</text>
-            <text class="d-title" x="250" y="978" text-anchor="middle">חשבונית/קבלה ושליחה ללקוח</text>
-            <rect class="d-chip" x="195" y="1010" width="110" height="22" rx="11"/>
-            <text class="d-chip-text" x="250" y="1025" text-anchor="middle">💻 / 📧</text>
+            <rect class="d-box" x="100" y="838" width="300" height="64" rx="10"/>
+            <text class="d-actor" x="250" y="854" text-anchor="middle">לילי</text>
+            <text class="d-title" x="250" y="878" text-anchor="middle">חשבונית ברווחית + מייל ללקוח</text>
+            <rect class="d-chip" x="195" y="910" width="110" height="22" rx="11"/>
+            <text class="d-chip-text" x="250" y="925" text-anchor="middle">💻 / 📧</text>
           </g>
         </svg>
       </div>
-      <figcaption class="flow-cap">2 · קבלת הזמנה, תמחור ומעקב תשלום - שתי תיקיות נפרדות בשני מחשבים (לכל אחד גיבוי לענן בנפרד, אבל בלי קישור ממשי ביניהן), ובלי בקרה שיטתית על לקוח ששותק.</figcaption>
+      <figcaption class="flow-cap">2 · תהליך הכספים - מתחיל בחתימת החוזה, לא בקבלת ההצעה. קובץ אקסל מרכזי אחד מסמן אדום (נדרשת גבייה) / ירוק (שולם) / כחול (לא נדרש) לכל הפרויקטים, והמחזור הזה חוזר על עצמו 3 פעמים (15% / 70% / 15%).</figcaption>
     </figure>
 
     <!-- DIAGRAM 3 -->
@@ -417,6 +418,7 @@
           <text class="d-gap-label" x="180" y="655" text-anchor="middle">⏳ שבועות אחר כך</text>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,812 L180,868"/>
           <path class="d-arrow dashed" marker-end="url(#arrowHead)" d="M180,962 L180,1098"/>
+          <text class="d-note" x="180" y="985" text-anchor="middle">🔁 חוזר 3-5 פעמים (יציקות שונות) עד לאישור</text>
           <text class="d-gap-label" x="180" y="1035" text-anchor="middle">⏳ חודשים אחר כך</text>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,1192 L260,1248"/>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,1192 L100,1248"/>
@@ -499,7 +501,7 @@
           </g>
         </svg>
       </div>
-      <figcaption class="flow-cap">3 · תהליך העבודה ומעקב אחרי הלקוח - מחתימת החוזה ועד טופס האיכלוס, על פני חודשים, כולו מתואם בטלפון, וואטסאפ ודף רשום ביד.</figcaption>
+      <figcaption class="flow-cap">3 · תהליך העבודה ומעקב אחרי הלקוח - מחתימת החוזה ועד טופס האיכלוס, על פני חודשים וכ-3-5 ביקורי פיקוח חוזרים, כולו מתואם בטלפון, וואטסאפ ודף רשום ביד.</figcaption>
     </figure>
 
     <!-- DIAGRAM 4 -->
