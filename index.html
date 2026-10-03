@@ -633,13 +633,13 @@
   <section>
     <div class="section-head">
       <span class="kicker">הפתרון המוצע</span>
-      <h2>שלושה סוכנים, בגבול מוגדר</h2>
+      <h2>ארבעה סוכנים, בגבול מוגדר</h2>
     </div>
     <p class="lede-text">
-      הפתרון לא מחליף אף אחד מהעובדים ולא נוגע בחתימה ההנדסית. שלושה סוכני AI נכנסים בדיוק בנקודות הכשל
-      שמופו למעלה - אחד עוקב אחרי הצעות מחיר שנשלחו ולא הבשילו, אחד בקצה הקליטה, ואחד בקצה הגבייה - וכל
-      אחד מהם מוסיף מידע ומכין טיוטות, אבל אף פעולה סופית (שליחה, חתימה, אישור תשלום) לא קורית בלי שבן אדם
-      ראה אותה.
+      הפתרון לא מחליף אף אחד מהעובדים ולא נוגע בחתימה ההנדסית. ארבעה סוכני AI נכנסים בדיוק בנקודות הכשל
+      שמופו למעלה - אחד עוקב אחרי הצעות מחיר שנשלחו ולא הבשילו, אחד בקצה הקליטה, אחד בקצה הגבייה, ואחד
+      בתיאום ביקורי הפיקוח - וכל אחד מהם מוסיף מידע ומכין טיוטות, אבל אף פעולה סופית (שליחה, חתימה, אישור
+      תשלום, שיבוץ) לא קורית בלי שבן אדם ראה אותה.
     </p>
 
     <!-- AGENT DIAGRAM C -->
@@ -859,6 +859,55 @@
         <div class="boundary"><strong>גבול אחריות:</strong> הסוכן לא שולח חשבונית סופית ולא מחליט לוותר על חוב. כשהוא לא בטוח לאיזה תיק שייכת הפקדה, הוא פונה ללילי במקום לנחש - ולילי מכוונת אותו ומאשרת את השליחה בעצמה.</div>
       </dl>
     </div>
+
+    <!-- AGENT DIAGRAM D -->
+    <div class="agent-card">
+      <h3>🤖 סוכן תיאום ביקורי פיקוח</h3>
+      <figure class="flowfig">
+        <div class="diagram-wrap">
+          <svg class="flow" viewBox="0 0 360 680" role="img" aria-label="תרשים פתרון: סוכן תיאום ביקורי פיקוח, מהזמנת הביקור ועד אישור ירון לשליחה">
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,132 L180,188"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,282 L180,338"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,432 L180,488"/>
+
+            <g>
+              <rect class="d-box" x="30" y="38" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="54" text-anchor="middle">לקוח / קבלן</text>
+              <text class="d-title" x="180" y="78" text-anchor="middle">מזמין ביקור פיקוח</text>
+              <rect class="d-chip" x="125" y="110" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="125" text-anchor="middle">טלפון / מייל</text>
+            </g>
+            <g>
+              <rect class="d-box agent" x="30" y="188" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="204" text-anchor="middle">🤖 סוכן תיאום</text>
+              <text class="d-title" x="180" y="228" text-anchor="middle">קולט את הבקשה ליומן משותף</text>
+              <rect class="d-chip" x="125" y="260" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="275" text-anchor="middle">⚙ אוטומטי</text>
+            </g>
+            <g>
+              <rect class="d-box agent" x="30" y="338" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="354" text-anchor="middle">🤖 סוכן תיאום</text>
+              <text class="d-title" x="180" y="378" text-anchor="middle">מציע שיבוץ לפי עומס הצוות</text>
+              <rect class="d-chip" x="125" y="410" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="425" text-anchor="middle">💻 יומן משותף</text>
+            </g>
+            <g>
+              <rect class="d-box human" x="30" y="488" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="504" text-anchor="middle">👤 ירון</text>
+              <text class="d-title" x="180" y="528" text-anchor="middle">מאשר ושולח לקבוצת הוואטסאפ</text>
+              <rect class="d-chip warn" x="125" y="560" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="575" text-anchor="middle">✓ אישור אנושי</text>
+            </g>
+          </svg>
+        </div>
+      </figure>
+      <dl class="agent-grid">
+        <div><dt>מטרה</dt><dd>להחליף את היומן הידני והתיאום הטלפוני בשיבוץ שרואים אותו כולם, בלי לשנות איך מזמינים ביקור</dd></div>
+        <div><dt>קלט</dt><dd>בקשת ביקור (טלפון/מייל) + זמינות הצוות ביומן המשותף</dd></div>
+        <div><dt>פלט</dt><dd>הצעת שיבוץ יומית + עדכון לקבוצת הוואטסאפ המשרדית</dd></div>
+        <div class="boundary"><strong>גבול אחריות:</strong> הסוכן מציע שיבוץ, לא קובע אותו - ירון רואה ומאשר את סידור היום לפני שהוא נשלח לצוות.</div>
+      </dl>
+    </div>
   </section>
 
   <section>
@@ -893,7 +942,7 @@
 
     <div class="phase">
       <div class="phase-top">
-        <div class="phase-id"><span class="big">01</span><div><div class="phase-title">קליטת פרויקטים, מעקב גבייה ומעקב הצעות</div><div class="phase-duration">משך הקמה: כ-4-5 שבועות</div></div></div>
+        <div class="phase-id"><span class="big">01</span><div><div class="phase-title">קליטה, גבייה, מעקב הצעות ותיאום ביקורים</div><div class="phase-duration">משך הקמה: כ-5-6 שבועות</div></div></div>
         <span class="phase-chip included">כלול בהצעה זו</span>
       </div>
       <ul>
@@ -902,31 +951,17 @@
         <li>טופס אונליין לאישור חוזה עם שדות חובה, שהלקוח ממלא אחרי קבלת ההצעה <span class="solves">מונע את ההתכתבות החזורה להשלמת מידע חסר בתהליך 1</span></li>
         <li>סוכן מעקב גבייה עם תזכורות אוטומטיות לפי שלב תשלום, כולל התאמת הודעות וואטסאפ מהבנק לתיק הלקוח (עם הכוונה של לילי כשלא ברור) <span class="solves">פותר את היעדר הבקרה בתהליכים 2 ו-4</span></li>
         <li>סוכן מעקב סטטוס הצעות מחיר - מזהה הצעות שלא נחתמו ואוסף את סיבת הדחייה <span class="solves">סוגר פער שלא עלה במיפוי המקורי - היום אין שום מעקב אחרי הצעות שאבדו</span></li>
+        <li>יומן משותף לתיאום ביקורי פיקוח, עם שיבוץ אוטומטי לפי עומס ועדכון יומי לקבוצת הוואטסאפ המשרדית <span class="solves">פותר את תיאום הביקורים בתהליך 3 - תוספת פשוטה שנכנסת כבר בשלב הזה</span></li>
       </ul>
       <div class="phase-foot">
         <span class="phase-duration">מטרת הסוכנים: להחליף זיכרון אנושי בתיעוד שרץ לבד, בלי לקבל אף החלטה הנדסית. טווח המחיר עודכן לאור ההיקף המורחב</span>
-        <span class="phase-price num"><span dir="ltr">10,000–18,000</span> ₪</span>
+        <span class="phase-price num"><span dir="ltr">16,000–28,000</span> ₪</span>
       </div>
     </div>
 
     <div class="phase">
       <div class="phase-top">
-        <div class="phase-id"><span class="big">02</span><div><div class="phase-title">תיאום ביקורי פיקוח באתר</div><div class="phase-duration">עתידי</div></div></div>
-        <span class="phase-chip future">אופציונלי - בהמשך</span>
-      </div>
-      <ul>
-        <li>יומן משותף במקום טלפון + וואטסאפ בלבד <span class="solves">פותר את תיאום הביקורים בתהליך 3</span></li>
-        <li>שיבוץ אוטומטי לפי עומס, ועדכון יומי לקבוצת הוואטסאפ המשרדית</li>
-      </ul>
-      <div class="phase-foot">
-        <span class="phase-duration">יתומחר בנפרד, רק אחרי שלב 1</span>
-        <span class="phase-price num"><span dir="ltr">10,000–15,000</span> ₪</span>
-      </div>
-    </div>
-
-    <div class="phase">
-      <div class="phase-top">
-        <div class="phase-id"><span class="big">03</span><div><div class="phase-title">אינטגרציית וואטסאפ עסקי</div><div class="phase-duration">עתידי</div></div></div>
+        <div class="phase-id"><span class="big">02</span><div><div class="phase-title">אינטגרציית וואטסאפ עסקי</div><div class="phase-duration">עתידי</div></div></div>
         <span class="phase-chip future">אופציונלי - בהמשך</span>
       </div>
       <ul>
