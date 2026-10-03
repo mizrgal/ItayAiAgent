@@ -586,6 +586,7 @@
               <li>אין מעקב כתוב על בקשות שנשלחו ולא נענו - הכול חי בתיבת מייל בודדת</li>
               <li>פרטי הלקוח והפרויקט קיימים רק בתוך קובץ המסמך עצמו, לא במקום מחפש</li>
               <li>אין שום מעקב אחרי הצעות שנשלחו ולא הבשילו לפרויקט - ואין תיעוד של הסיבה</li>
+              <li>פרטים חשובים (כתובת מדויקת, פרטי התקשרות ועוד) לפעמים חסרים ומתגלים רק בהתכתבות חזרה ונשנית עם הלקוח</li>
             </ul></td>
           </tr>
           <tr>
@@ -709,23 +710,33 @@
       <h3>🤖 סוכן קליטת פרויקטים</h3>
       <figure class="flowfig">
         <div class="diagram-wrap">
-          <svg class="flow" viewBox="0 0 360 900" role="img" aria-label="תרשים פתרון: סוכן קליטת פרויקטים, ממייל האדריכל ועד אישור אנושי לשליחה">
-            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,132 L180,188"/>
+          <svg class="flow" viewBox="0 0 360 900" role="img" aria-label="תרשים פתרון: סוכן קליטת פרויקטים, מטופס הלקוח ומייל האדריכל ועד אישור אנושי לשליחה">
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M260,132 L180,188"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M100,132 L180,188"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,282 L180,338"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,432 L180,488"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,582 L180,638"/>
 
             <g>
-              <rect class="d-box" x="30" y="38" width="300" height="64" rx="10"/>
-              <text class="d-actor" x="180" y="54" text-anchor="middle">אדריכל</text>
-              <text class="d-title" x="180" y="78" text-anchor="middle">שולח תוכניות / בקשה במייל</text>
-              <rect class="d-chip" x="125" y="110" width="110" height="22" rx="11"/>
-              <text class="d-chip-text" x="180" y="125" text-anchor="middle">מייל</text>
+              <rect class="d-box accent" x="190" y="38" width="140" height="64" rx="10"/>
+              <text class="d-actor" x="260" y="54" text-anchor="middle">לקוח</text>
+              <text class="d-title" x="260" y="72" text-anchor="middle">ממלא טופס אונליין</text>
+              <text class="d-title" x="260" y="88" text-anchor="middle">לאישור חוזה</text>
+              <rect class="d-chip accent" x="210" y="110" width="100" height="22" rx="11"/>
+              <text class="d-chip-text" x="260" y="125" text-anchor="middle">🔗 שדות חובה</text>
+            </g>
+            <g>
+              <rect class="d-box" x="30" y="38" width="140" height="64" rx="10"/>
+              <text class="d-actor" x="100" y="54" text-anchor="middle">אדריכל</text>
+              <text class="d-title" x="100" y="72" text-anchor="middle">שולח תוכניות /</text>
+              <text class="d-title" x="100" y="88" text-anchor="middle">בקשה במייל</text>
+              <rect class="d-chip" x="50" y="110" width="100" height="22" rx="11"/>
+              <text class="d-chip-text" x="100" y="125" text-anchor="middle">מייל</text>
             </g>
             <g>
               <rect class="d-box agent" x="30" y="188" width="300" height="64" rx="10"/>
               <text class="d-actor" x="180" y="204" text-anchor="middle">🤖 סוכן קליטה</text>
-              <text class="d-title" x="180" y="228" text-anchor="middle">קורא את המייל ושולף פרטים</text>
+              <text class="d-title" x="180" y="228" text-anchor="middle">קורא טופס + מייל, שולף פרטים</text>
               <rect class="d-chip" x="125" y="260" width="110" height="22" rx="11"/>
               <text class="d-chip-text" x="180" y="275" text-anchor="middle">⚙ אוטומטי</text>
             </g>
@@ -754,10 +765,10 @@
         </div>
       </figure>
       <dl class="agent-grid">
-        <div><dt>מטרה</dt><dd>להחליף את הדף הפיזי ברשומה אחת שנפתחת לבד מכל מייל נכנס מאדריכל</dd></div>
-        <div><dt>קלט</dt><dd>מייל נכנס מאדריכל עם תוכניות / פרטי פרויקט</dd></div>
-        <div><dt>פלט</dt><dd>רשומה חדשה במסד הנתונים + טיוטת מייל אישור, מוכנה לבדיקה</dd></div>
-        <div class="boundary"><strong>גבול אחריות:</strong> הסוכן לא שולח שום מייל בעצמו ולא מחליט על תוכן הנדסי - רק קורא, מתעד ומכין טיוטה.</div>
+        <div><dt>מטרה</dt><dd>להבטיח שפרטי לקוח ופרויקט מתקבלים מלאים כבר מההתחלה (שדות חובה בטופס), במקום לרדוף אחרי מידע חסר בהתכתבויות חזרות ונשנות</dd></div>
+        <div><dt>קלט</dt><dd>טופס אונליין שהלקוח ממלא לאחר קבלת ההצעה (שדות חובה) + מייל נכנס מאדריכל עם תוכניות</dd></div>
+        <div><dt>פלט</dt><dd>רשומה חדשה ומלאה במסד הנתונים + טיוטת מייל אישור לאדריכל, מוכנה לבדיקה</dd></div>
+        <div class="boundary"><strong>גבול אחריות:</strong> הסוכן לא שולח שום מייל בעצמו ולא מחליט על תוכן הנדסי - רק קולט, מתעד ומכין טיוטה. אילו שדות חובה בטופס - זו החלטה של הצוות, לא של הסוכן.</div>
       </dl>
     </div>
 
@@ -872,6 +883,7 @@
       <ul>
         <li>מסד נתונים מרכזי אחד לכל פרויקט <span class="solves">פותר את הכפילות ואת הסיכון לטעויות הקלדה בשם התיקייה מתהליך 2</span></li>
         <li>סוכן קליטה שקורא מיילים נכנסים מאדריכלים, שולף פרטים ופותח רשומה אוטומטית <span class="solves">פותר את הרישום הידני על דף בתהליך 3</span></li>
+        <li>טופס אונליין לאישור חוזה עם שדות חובה, שהלקוח ממלא אחרי קבלת ההצעה <span class="solves">מונע את ההתכתבות החזורה להשלמת מידע חסר בתהליך 1</span></li>
         <li>סוכן מעקב גבייה עם תזכורות אוטומטיות לפי שלב תשלום, כולל התאמת הודעות וואטסאפ מהבנק לתיק הלקוח (עם הכוונה של לילי כשלא ברור) <span class="solves">פותר את היעדר הבקרה בתהליכים 2 ו-4</span></li>
         <li>סוכן מעקב סטטוס הצעות מחיר - מזהה הצעות שלא נחתמו ואוסף את סיבת הדחייה <span class="solves">סוגר פער שלא עלה במיפוי המקורי - היום אין שום מעקב אחרי הצעות שאבדו</span></li>
       </ul>
