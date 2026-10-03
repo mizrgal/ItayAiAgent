@@ -225,6 +225,8 @@
   .flow .d-arrowhead{ fill:var(--text-muted); }
   .flow .d-gap-label{ fill:var(--accent-strong); font-size:11px; font-family:"IBM Plex Mono",monospace; }
   .flow .d-cond{ fill:var(--text-muted); font-size:10.5px; font-family:"IBM Plex Sans Hebrew",sans-serif; }
+  .flow .d-label-bg{ fill:var(--bg); }
+  .flow .d-label-bg-card{ fill:var(--surface); }
   .flow .d-note{ fill:var(--amber); font-size:11px; font-family:"IBM Plex Sans Hebrew",sans-serif; }
   .flow .d-group-label{ fill:var(--accent-strong); font-size:12px; font-weight:600; font-family:"IBM Plex Sans Hebrew",sans-serif; }
   figcaption.flow-cap{ margin-top:10px; font-size:13px; color:var(--text-muted); max-width:62ch; }
@@ -333,10 +335,13 @@
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,472 L250,538"/>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,648 L330,688"/>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,648 L170,688"/>
+          <rect class="d-label-bg" x="274" y="657" width="52" height="16"/>
           <text class="d-cond" x="300" y="668" text-anchor="middle">שולם ✓</text>
+          <rect class="d-label-bg" x="175" y="657" width="60" height="16"/>
           <text class="d-cond" x="205" y="668" text-anchor="middle">לא שולם</text>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M330,782 L250,838"/>
           <path class="d-arrow dashed" marker-end="url(#arrowHead)" d="M100,720 L40,720 L40,570 L100,570"/>
+          <rect class="d-label-bg" x="2" y="637" width="76" height="16" transform="rotate(-90 40 645)"/>
           <text class="d-gap-label" x="40" y="645" text-anchor="middle" transform="rotate(-90 40 645)">תזכורת חוזרת</text>
           <text class="d-note" x="170" y="798" text-anchor="middle">⚠ אין בקרה נוספת מעבר לזה</text>
           <text class="d-gap-label" x="250" y="950" text-anchor="middle">🔁 חוזר על עצמו: 70% אחרי תוכניות ביצוע,</text>
@@ -415,14 +420,18 @@
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M100,282 L180,338"/>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,432 L180,488"/>
           <path class="d-arrow dashed" marker-end="url(#arrowHead)" d="M180,582 L180,718"/>
+          <rect class="d-label-bg" x="118" y="644" width="124" height="16"/>
           <text class="d-gap-label" x="180" y="655" text-anchor="middle">⏳ שבועות אחר כך</text>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,812 L180,868"/>
           <path class="d-arrow dashed" marker-end="url(#arrowHead)" d="M180,962 L180,1098"/>
           <text class="d-note" x="180" y="985" text-anchor="middle">🔁 חוזר 3-5 פעמים (יציקות שונות) עד לאישור</text>
+          <rect class="d-label-bg" x="118" y="1024" width="124" height="16"/>
           <text class="d-gap-label" x="180" y="1035" text-anchor="middle">⏳ חודשים אחר כך</text>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,1208 L260,1248"/>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,1208 L100,1248"/>
+          <rect class="d-label-bg" x="216" y="1223" width="52" height="16"/>
           <text class="d-cond" x="242" y="1234" text-anchor="middle">שולם ✓</text>
+          <rect class="d-label-bg" x="98" y="1223" width="60" height="16"/>
           <text class="d-cond" x="128" y="1234" text-anchor="middle">לא שולם</text>
 
           <g>
@@ -514,10 +523,13 @@
 
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,390 L330,430"/>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,390 L170,430"/>
+          <rect class="d-label-bg" x="274" y="403" width="52" height="16"/>
           <text class="d-cond" x="300" y="414" text-anchor="middle">שולם ✓</text>
+          <rect class="d-label-bg" x="175" y="403" width="60" height="16"/>
           <text class="d-cond" x="205" y="414" text-anchor="middle">לא שולם</text>
           <path class="d-arrow" marker-end="url(#arrowHead)" d="M330,534 L250,630"/>
           <path class="d-arrow dashed" marker-end="url(#arrowHead)" d="M100,462 L40,462 L40,280 L100,280"/>
+          <rect class="d-label-bg" x="3" y="363" width="74" height="16" transform="rotate(-90 40 371)"/>
           <text class="d-gap-label" x="40" y="371" text-anchor="middle" transform="rotate(-90 40 371)">בדיקה חוזרת</text>
           <text class="d-note" x="250" y="548" text-anchor="middle">⚠ בלי טריגר שיטתי שמזהה התעלמות</text>
 
@@ -639,7 +651,9 @@
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,132 L180,188"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,298 L260,338"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,298 L100,338"/>
+            <rect class="d-label-bg-card" x="206" y="315" width="54" height="16"/>
             <text class="d-cond" x="233" y="326" text-anchor="middle">✓ חתימה</text>
+            <rect class="d-label-bg-card" x="106" y="315" width="44" height="16"/>
             <text class="d-cond" x="128" y="326" text-anchor="middle">❓ לא</text>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M100,432 L180,488"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,582 L180,638"/>
@@ -782,7 +796,9 @@
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M170,142 L250,198"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,308 L330,348"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,308 L170,348"/>
+            <rect class="d-label-bg-card" x="282" y="317" width="52" height="16"/>
             <text class="d-cond" x="308" y="328" text-anchor="middle">שולם ✓</text>
+            <rect class="d-label-bg-card" x="167" y="317" width="60" height="16"/>
             <text class="d-cond" x="197" y="328" text-anchor="middle">לא שולם</text>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M330,428 L250,510"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M170,428 L250,510"/>
