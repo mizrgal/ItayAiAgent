@@ -633,10 +633,10 @@
   <section>
     <div class="section-head">
       <span class="kicker">הפתרון המוצע</span>
-      <h2>מערכת אחת, ארבעה סוכנים, בגבול מוגדר</h2>
+      <h2>מערכת אחת, ארבעה מודולים, בגבול מוגדר</h2>
     </div>
     <p class="lede-text">
-      הפתרון לא מחליף אף אחד מהעובדים ולא נוגע בחתימה ההנדסית. ארבעה סוכני AI נכנסים בדיוק בנקודות הכשל
+      הפתרון לא מחליף אף אחד מהעובדים ולא נוגע בחתימה ההנדסית. ארבעה מודולי AI נכנסים בדיוק בנקודות הכשל
       שמופו למעלה - אחד עוקב אחרי הצעות מחיר שנשלחו ולא הבשילו, אחד בקצה הקליטה, אחד בקצה הגבייה, ואחד
       בתיאום ביקורי הפיקוח - וכל אחד מהם מוסיף מידע ומכין טיוטות, אבל אף פעולה סופית (שליחה, חתימה, אישור
       תשלום, שיבוץ) לא קורית בלי שבן אדם ראה אותה.
@@ -660,7 +660,7 @@
 
     <!-- AGENT DIAGRAM C -->
     <div class="agent-card">
-      <h3>🤖 סוכן מעקב סטטוס הצעות מחיר</h3>
+      <h3>🤖 מודול מעקב סטטוס הצעות מחיר</h3>
       <figure class="flowfig">
         <div class="diagram-wrap">
           <svg class="flow" viewBox="0 0 360 910" role="img" aria-label="תרשים פתרון: מעקב סטטוס הצעות מחיר, מי זכינו ומי לא ולמה">
@@ -684,7 +684,7 @@
             </g>
             <g>
               <rect class="d-box agent" x="30" y="188" width="300" height="64" rx="10"/>
-              <text class="d-actor" x="180" y="204" text-anchor="middle">🤖 סוכן מעקב</text>
+              <text class="d-actor" x="180" y="204" text-anchor="middle">🤖 מודול מעקב</text>
               <text class="d-title" x="180" y="228" text-anchor="middle">עוקב X ימים אחרי השליחה</text>
               <rect class="d-chip" x="125" y="260" width="110" height="22" rx="11"/>
               <text class="d-chip-text" x="180" y="275" text-anchor="middle">⚙ אוטומטי</text>
@@ -705,14 +705,14 @@
             </g>
             <g>
               <rect class="d-box agent" x="30" y="488" width="300" height="64" rx="10"/>
-              <text class="d-actor" x="180" y="504" text-anchor="middle">🤖 סוכן מעקב</text>
+              <text class="d-actor" x="180" y="504" text-anchor="middle">🤖 מודול מעקב</text>
               <text class="d-title" x="180" y="528" text-anchor="middle">פונה ללקוח לשאול מה הסיבה</text>
               <rect class="d-chip" x="125" y="560" width="110" height="22" rx="11"/>
               <text class="d-chip-text" x="180" y="575" text-anchor="middle">מייל</text>
             </g>
             <g>
               <rect class="d-box agent" x="30" y="638" width="300" height="64" rx="10"/>
-              <text class="d-actor" x="180" y="654" text-anchor="middle">🤖 סוכן מעקב</text>
+              <text class="d-actor" x="180" y="654" text-anchor="middle">🤖 מודול מעקב</text>
               <text class="d-title" x="180" y="678" text-anchor="middle">מתעד את הסיבה במסד הנתונים</text>
               <rect class="d-chip" x="125" y="710" width="110" height="22" rx="11"/>
               <text class="d-chip-text" x="180" y="725" text-anchor="middle">💻 מסד אחד</text>
@@ -731,16 +731,16 @@
         <div><dt>מטרה</dt><dd>לדעת על כל הצעת מחיר שנשלחה אם התקבלה או לא, ולמה - כדי לצבור מידע שיעזור לשפר את אחוז הסגירה בהמשך</dd></div>
         <div><dt>קלט</dt><dd>הצעות מחיר שנשלחו + תשובת הלקוח (או שקט מצידו)</dd></div>
         <div><dt>פלט</dt><dd>סטטוס "התקבלה / לא התקבלה" לכל הצעה, סיבת דחייה מתועדת, ודוח מגמות תקופתי לצוות</dd></div>
-        <div class="boundary"><strong>גבול אחריות:</strong> הסוכן לא מחליט מה לשנות בתמחור או בעבודה - הוא רק אוסף ומתעד את המידע. ההחלטה האסטרטגית נשארת של הצוות.</div>
+        <div class="boundary"><strong>גבול אחריות:</strong> המודול לא מחליט מה לשנות בתמחור או בעבודה - הוא רק אוסף ומתעד את המידע. ההחלטה האסטרטגית נשארת של הצוות.</div>
       </dl>
     </div>
 
     <!-- AGENT DIAGRAM A -->
     <div class="agent-card">
-      <h3>🤖 סוכן קליטת פרויקטים</h3>
+      <h3>🤖 מודול קליטת פרויקטים</h3>
       <figure class="flowfig">
         <div class="diagram-wrap">
-          <svg class="flow" viewBox="0 0 360 900" role="img" aria-label="תרשים פתרון: סוכן קליטת פרויקטים, מטופס הלקוח ומייל האדריכל ועד אישור אנושי לשליחה">
+          <svg class="flow" viewBox="0 0 360 900" role="img" aria-label="תרשים פתרון: מודול קליטת פרויקטים, מטופס הלקוח ומייל האדריכל ועד אישור אנושי לשליחה">
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M260,132 L180,188"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M100,132 L180,188"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,282 L180,338"/>
@@ -765,21 +765,21 @@
             </g>
             <g>
               <rect class="d-box agent" x="30" y="188" width="300" height="64" rx="10"/>
-              <text class="d-actor" x="180" y="204" text-anchor="middle">🤖 סוכן קליטה</text>
+              <text class="d-actor" x="180" y="204" text-anchor="middle">🤖 מודול קליטה</text>
               <text class="d-title" x="180" y="228" text-anchor="middle">קורא טופס + מייל, שולף פרטים</text>
               <rect class="d-chip" x="125" y="260" width="110" height="22" rx="11"/>
               <text class="d-chip-text" x="180" y="275" text-anchor="middle">⚙ אוטומטי</text>
             </g>
             <g>
               <rect class="d-box agent" x="30" y="338" width="300" height="64" rx="10"/>
-              <text class="d-actor" x="180" y="354" text-anchor="middle">🤖 סוכן קליטה</text>
+              <text class="d-actor" x="180" y="354" text-anchor="middle">🤖 מודול קליטה</text>
               <text class="d-title" x="180" y="378" text-anchor="middle">פותח רשומה במסד המרכזי</text>
               <rect class="d-chip" x="125" y="410" width="110" height="22" rx="11"/>
               <text class="d-chip-text" x="180" y="425" text-anchor="middle">💻 מסד אחד</text>
             </g>
             <g>
               <rect class="d-box agent" x="30" y="488" width="300" height="64" rx="10"/>
-              <text class="d-actor" x="180" y="504" text-anchor="middle">🤖 סוכן קליטה</text>
+              <text class="d-actor" x="180" y="504" text-anchor="middle">🤖 מודול קליטה</text>
               <text class="d-title" x="180" y="528" text-anchor="middle">מכין טיוטת מייל אישור לאדריכל</text>
               <rect class="d-chip" x="125" y="560" width="110" height="22" rx="11"/>
               <text class="d-chip-text" x="180" y="575" text-anchor="middle">טיוטת מייל</text>
@@ -798,16 +798,16 @@
         <div><dt>מטרה</dt><dd>להבטיח שפרטי לקוח ופרויקט מתקבלים מלאים כבר מההתחלה (שדות חובה בטופס), במקום לרדוף אחרי מידע חסר בהתכתבויות חזרות ונשנות</dd></div>
         <div><dt>קלט</dt><dd>טופס אונליין שהלקוח ממלא לאחר קבלת ההצעה (שדות חובה) + מייל נכנס מאדריכל עם תוכניות</dd></div>
         <div><dt>פלט</dt><dd>רשומה חדשה ומלאה במסד הנתונים + טיוטת מייל אישור לאדריכל, מוכנה לבדיקה</dd></div>
-        <div class="boundary"><strong>גבול אחריות:</strong> הסוכן לא שולח שום מייל בעצמו ולא מחליט על תוכן הנדסי - רק קולט, מתעד ומכין טיוטה. אילו שדות חובה בטופס - זו החלטה של הצוות, לא של הסוכן.</div>
+        <div class="boundary"><strong>גבול אחריות:</strong> המודול לא שולח שום מייל בעצמו ולא מחליט על תוכן הנדסי - רק קולט, מתעד ומכין טיוטה. אילו שדות חובה בטופס - זו החלטה של הצוות, לא של המודול.</div>
       </dl>
     </div>
 
     <!-- AGENT DIAGRAM B -->
     <div class="agent-card">
-      <h3>🤖 סוכן מעקב גבייה</h3>
+      <h3>🤖 מודול מעקב גבייה</h3>
       <figure class="flowfig">
         <div class="diagram-wrap">
-          <svg class="flow" viewBox="0 0 430 630" role="img" aria-label="תרשים פתרון: סוכן מעקב גבייה, כולל התאמת הודעות וואטסאפ מהבנק לתיק הלקוח, ועד אישור לילי לשליחה">
+          <svg class="flow" viewBox="0 0 430 630" role="img" aria-label="תרשים פתרון: מודול מעקב גבייה, כולל התאמת הודעות וואטסאפ מהבנק לתיק הלקוח, ועד אישור לילי לשליחה">
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M330,142 L250,198"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M170,142 L250,198"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M250,308 L330,348"/>
@@ -821,7 +821,7 @@
             <text class="d-note" x="170" y="444" text-anchor="middle">⏱ אחרי X ימים בלי</text>
             <text class="d-note" x="170" y="459" text-anchor="middle">מענה → מתריע לאדם</text>
             <text class="d-note" x="330" y="444" text-anchor="middle">🤝 לא ברור לאיזה תיק?</text>
-            <text class="d-note" x="330" y="459" text-anchor="middle">לילי מכוונת, הסוכן לומד</text>
+            <text class="d-note" x="330" y="459" text-anchor="middle">לילי מכוונת, המודול לומד</text>
 
             <g>
               <rect class="d-box" x="260" y="48" width="140" height="64" rx="10"/>
@@ -839,21 +839,21 @@
             </g>
             <g>
               <rect class="d-box agent" x="100" y="198" width="300" height="64" rx="10"/>
-              <text class="d-actor" x="250" y="214" text-anchor="middle">🤖 סוכן גבייה</text>
+              <text class="d-actor" x="250" y="214" text-anchor="middle">🤖 מודול גבייה</text>
               <text class="d-title" x="250" y="238" text-anchor="middle">בודק תשלום ומתאים לתיק הלקוח</text>
               <rect class="d-chip" x="195" y="270" width="110" height="22" rx="11"/>
               <text class="d-chip-text" x="250" y="285" text-anchor="middle">⚙ אוטומטי</text>
             </g>
             <g>
               <rect class="d-box agent" x="260" y="348" width="140" height="80" rx="10"/>
-              <text class="d-actor" x="330" y="366" text-anchor="middle">🤖 סוכן גבייה</text>
+              <text class="d-actor" x="330" y="366" text-anchor="middle">🤖 מודול גבייה</text>
               <text class="d-title" x="330" y="386" text-anchor="middle">שולם → מעדכן</text>
               <text class="d-title" x="330" y="402" text-anchor="middle">סטטוס + טיוטת</text>
               <text class="d-title" x="330" y="418" text-anchor="middle">חשבונית</text>
             </g>
             <g>
               <rect class="d-box agent" x="100" y="348" width="140" height="80" rx="10"/>
-              <text class="d-actor" x="170" y="366" text-anchor="middle">🤖 סוכן גבייה</text>
+              <text class="d-actor" x="170" y="366" text-anchor="middle">🤖 מודול גבייה</text>
               <text class="d-title" x="170" y="386" text-anchor="middle">לא שולם → שולח</text>
               <text class="d-title" x="170" y="402" text-anchor="middle">תזכורת אוטומטית</text>
               <text class="d-title" x="170" y="418" text-anchor="middle">ללקוח</text>
@@ -872,16 +872,16 @@
         <div><dt>מטרה</dt><dd>לבדוק יומית מי שילם ומי לא, לכל לקוח ולכל שלב תשלום, ולהתאים כל הפקדה לתיק הנכון - בלי שמישהו "יזכור" לבדוק</dd></div>
         <div><dt>קלט</dt><dd>סטטוס תשלומים מרווחית + חשבון הבנק, ועדכוני וואטסאפ מהבנק על כל תנועה בחשבון</dd></div>
         <div><dt>פלט</dt><dd>עדכון סטטוס אוטומטי, תזכורת ללקוח, טיוטת חשבונית/קבלה - ובמקרים לא ברורים, פנייה ללילי להכוונה</dd></div>
-        <div class="boundary"><strong>גבול אחריות:</strong> הסוכן לא שולח חשבונית סופית ולא מחליט לוותר על חוב. כשהוא לא בטוח לאיזה תיק שייכת הפקדה, הוא פונה ללילי במקום לנחש - ולילי מכוונת אותו ומאשרת את השליחה בעצמה.</div>
+        <div class="boundary"><strong>גבול אחריות:</strong> המודול לא שולח חשבונית סופית ולא מחליט לוותר על חוב. כשהוא לא בטוח לאיזה תיק שייכת הפקדה, הוא פונה ללילי במקום לנחש - ולילי מכוונת אותו ומאשרת את השליחה בעצמה.</div>
       </dl>
     </div>
 
     <!-- AGENT DIAGRAM D -->
     <div class="agent-card">
-      <h3>🤖 סוכן תיאום ביקורי פיקוח</h3>
+      <h3>🤖 מודול תיאום ביקורי פיקוח</h3>
       <figure class="flowfig">
         <div class="diagram-wrap">
-          <svg class="flow" viewBox="0 0 360 680" role="img" aria-label="תרשים פתרון: סוכן תיאום ביקורי פיקוח, מהזמנת הביקור ועד אישור ירון לשליחה">
+          <svg class="flow" viewBox="0 0 360 680" role="img" aria-label="תרשים פתרון: מודול תיאום ביקורי פיקוח, מהזמנת הביקור ועד אישור ירון לשליחה">
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,132 L180,188"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,282 L180,338"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,432 L180,488"/>
@@ -895,14 +895,14 @@
             </g>
             <g>
               <rect class="d-box agent" x="30" y="188" width="300" height="64" rx="10"/>
-              <text class="d-actor" x="180" y="204" text-anchor="middle">🤖 סוכן תיאום</text>
+              <text class="d-actor" x="180" y="204" text-anchor="middle">🤖 מודול תיאום</text>
               <text class="d-title" x="180" y="228" text-anchor="middle">קולט את הבקשה ליומן משותף</text>
               <rect class="d-chip" x="125" y="260" width="110" height="22" rx="11"/>
               <text class="d-chip-text" x="180" y="275" text-anchor="middle">⚙ אוטומטי</text>
             </g>
             <g>
               <rect class="d-box agent" x="30" y="338" width="300" height="64" rx="10"/>
-              <text class="d-actor" x="180" y="354" text-anchor="middle">🤖 סוכן תיאום</text>
+              <text class="d-actor" x="180" y="354" text-anchor="middle">🤖 מודול תיאום</text>
               <text class="d-title" x="180" y="378" text-anchor="middle">מציע שיבוץ לפי עומס הצוות</text>
               <rect class="d-chip" x="125" y="410" width="110" height="22" rx="11"/>
               <text class="d-chip-text" x="180" y="425" text-anchor="middle">💻 יומן משותף</text>
@@ -921,7 +921,7 @@
         <div><dt>מטרה</dt><dd>להחליף את היומן הידני והתיאום הטלפוני בשיבוץ שרואים אותו כולם, בלי לשנות איך מזמינים ביקור</dd></div>
         <div><dt>קלט</dt><dd>בקשת ביקור (טלפון/מייל) + זמינות הצוות ביומן המשותף</dd></div>
         <div><dt>פלט</dt><dd>הצעת שיבוץ יומית + עדכון לקבוצת הוואטסאפ המשרדית</dd></div>
-        <div class="boundary"><strong>גבול אחריות:</strong> הסוכן מציע שיבוץ, לא קובע אותו - ירון רואה ומאשר את סידור היום לפני שהוא נשלח לצוות.</div>
+        <div class="boundary"><strong>גבול אחריות:</strong> המודול מציע שיבוץ, לא קובע אותו - ירון רואה ומאשר את סידור היום לפני שהוא נשלח לצוות.</div>
       </dl>
     </div>
   </section>
@@ -963,14 +963,14 @@
       </div>
       <ul>
         <li>מסד נתונים מרכזי אחד לכל פרויקט <span class="solves">פותר את הכפילות ואת הסיכון לטעויות הקלדה בשם התיקייה מתהליך 2</span></li>
-        <li>סוכן קליטה שקורא מיילים נכנסים מאדריכלים, שולף פרטים ופותח רשומה אוטומטית <span class="solves">פותר את הרישום הידני על דף בתהליך 3</span></li>
+        <li>מודול קליטה שקורא מיילים נכנסים מאדריכלים, שולף פרטים ופותח רשומה אוטומטית <span class="solves">פותר את הרישום הידני על דף בתהליך 3</span></li>
         <li>טופס אונליין לאישור חוזה עם שדות חובה, שהלקוח ממלא אחרי קבלת ההצעה <span class="solves">מונע את ההתכתבות החזורה להשלמת מידע חסר בתהליך 1</span></li>
-        <li>סוכן מעקב גבייה עם תזכורות אוטומטיות לפי שלב תשלום, כולל התאמת הודעות וואטסאפ מהבנק לתיק הלקוח (עם הכוונה של לילי כשלא ברור) <span class="solves">פותר את היעדר הבקרה בתהליכים 2 ו-4</span></li>
-        <li>סוכן מעקב סטטוס הצעות מחיר - מזהה הצעות שלא נחתמו ואוסף את סיבת הדחייה <span class="solves">סוגר פער שלא עלה במיפוי המקורי - היום אין שום מעקב אחרי הצעות שאבדו</span></li>
+        <li>מודול מעקב גבייה עם תזכורות אוטומטיות לפי שלב תשלום, כולל התאמת הודעות וואטסאפ מהבנק לתיק הלקוח (עם הכוונה של לילי כשלא ברור) <span class="solves">פותר את היעדר הבקרה בתהליכים 2 ו-4</span></li>
+        <li>מודול מעקב סטטוס הצעות מחיר - מזהה הצעות שלא נחתמו ואוסף את סיבת הדחייה <span class="solves">סוגר פער שלא עלה במיפוי המקורי - היום אין שום מעקב אחרי הצעות שאבדו</span></li>
         <li>יומן משותף לתיאום ביקורי פיקוח, עם שיבוץ אוטומטי לפי עומס ועדכון יומי לקבוצת הוואטסאפ המשרדית <span class="solves">פותר את תיאום הביקורים בתהליך 3 - תוספת פשוטה שנכנסת כבר בשלב הזה</span></li>
       </ul>
       <div class="phase-foot">
-        <span class="phase-duration">מטרת הסוכנים: להחליף זיכרון אנושי בתיעוד שרץ לבד, בלי לקבל אף החלטה הנדסית. המחיר עודכן - זו מערכת פנימית מותאמת, לא חיבור כלים מוכנים</span>
+        <span class="phase-duration">מטרת המודולים: להחליף זיכרון אנושי בתיעוד שרץ לבד, בלי לקבל אף החלטה הנדסית. המחיר עודכן - זו מערכת פנימית מותאמת, לא חיבור כלים מוכנים</span>
         <span class="phase-price num"><span dir="ltr">35,000–55,000</span> ₪</span>
       </div>
     </div>
