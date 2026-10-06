@@ -259,6 +259,35 @@
     .hero{ background-image:none; }
     .phase, .agent-card, .principle, .flowfig, .table-wrap, .note{ break-inside: avoid; page-break-inside: avoid; }
     a{ color:inherit; text-decoration:none; }
+    .tabbar{ display:none; }
+    .tabpanel[hidden]{ display:block !important; }
+  }
+
+  /* Tabs */
+  .tabbar{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin: 2px 0 10px; }
+  .tabbar .tab{
+    font-family:inherit; font-weight:600; font-size:14px; cursor:pointer;
+    padding:10px 20px; border-radius:10px; border:1px solid var(--border);
+    background:var(--surface); color:var(--text-muted); transition:all .15s;
+  }
+  .tabbar .tab:hover{ color:var(--text); }
+  .tabbar .tab.on{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .tabpanel[hidden]{ display:none; }
+  .tabpanel{ display:flex; flex-direction:column; gap:22px; }
+  /* Simplified-doc viewer */
+  .doc-intro{ display:flex; flex-direction:column; gap:10px; }
+  .doc-intro h2{ font-size:24px; }
+  .doc-intro p{ color:var(--text-muted); font-size:15px; max-width:64ch; }
+  .doc-dl{
+    align-self:flex-start; font-weight:600; font-size:13.5px;
+    padding:9px 16px; border-radius:9px; background:var(--accent-soft);
+    color:var(--accent-strong); border:1px solid var(--border); text-decoration:none;
+  }
+  .doc-dl:hover{ border-color:var(--accent); }
+  .doc-pages{ display:flex; flex-direction:column; gap:18px; align-items:center; }
+  .doc-pages img{
+    width:100%; max-width:880px; height:auto; display:block;
+    border:1px solid var(--border); border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,.12);
   }
 </style>
 
@@ -275,6 +304,13 @@
       <span class="status-chip">טיוטה לדיון</span>
     </div>
   </div>
+
+  <div class="tabbar" role="tablist">
+    <button class="tab on" type="button" role="tab" aria-selected="true" onclick="showTab('panel-original', this)">ההצעה המלאה</button>
+    <button class="tab" type="button" role="tab" aria-selected="false" onclick="showTab('panel-simplified', this)">גרסה מפושטת — התהליכים</button>
+  </div>
+
+  <div id="panel-original" class="tabpanel">
 
   <section>
     <div class="section-head">
@@ -1113,8 +1149,42 @@
     </div>
   </section>
 
+  </div><!-- /panel-original -->
+
+  <div id="panel-simplified" class="tabpanel" hidden>
+    <div class="doc-intro">
+      <span class="kicker">מבט נוסף</span>
+      <h2>תהליכי משרד ההנדסה — גרסה מפושטת</h2>
+      <p>אותה הצעה, מוצגת כמיפוי תהליכים פשוט לקריאה: יום בעבודה של לילי לפני ואחרי, מפת התהליכים (15% / 70% / 15%), וטבלת כאב ← מודול ← מדד הצלחה. נוח למי שמחליט, לא רק למי שבונה.</p>
+      <a class="doc-dl" href="docs/simplified-processes.pdf" download>⬇ הורדת ה-PDF</a>
+    </div>
+    <div class="doc-pages">
+      <img src="images/simplified/page-1.png" alt="גרסה מפושטת — עמוד 1" loading="lazy">
+      <img src="images/simplified/page-2.png" alt="גרסה מפושטת — עמוד 2" loading="lazy">
+      <img src="images/simplified/page-3.png" alt="גרסה מפושטת — עמוד 3" loading="lazy">
+      <img src="images/simplified/page-4.png" alt="גרסה מפושטת — עמוד 4" loading="lazy">
+      <img src="images/simplified/page-5.png" alt="גרסה מפושטת — עמוד 5" loading="lazy">
+      <img src="images/simplified/page-6.png" alt="גרסה מפושטת — עמוד 6" loading="lazy">
+      <img src="images/simplified/page-7.png" alt="גרסה מפושטת — עמוד 7" loading="lazy">
+      <img src="images/simplified/page-8.png" alt="גרסה מפושטת — עמוד 8" loading="lazy">
+      <img src="images/simplified/page-9.png" alt="גרסה מפושטת — עמוד 9" loading="lazy">
+    </div>
+  </div>
+
   <footer>
     <span>הוכן ע"י גל · 4.10.2026 · גרסה לדיון, לא הצעה סגורה</span>
   </footer>
+
+  <script>
+    function showTab(id, btn){
+      document.querySelectorAll('.tabpanel').forEach(function(p){ p.hidden = (p.id !== id); });
+      document.querySelectorAll('.tabbar .tab').forEach(function(b){
+        var on = (b === btn);
+        b.classList.toggle('on', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      if (window.scrollTo) window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 
 </div>
