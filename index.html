@@ -653,11 +653,78 @@
     </div>
     <p class="lede-text">
       הפתרון לא מחליף אף אחד מהעובדים ולא נוגע בחתימה ההנדסית. ארבעה מודולי AI נכנסים בדיוק בנקודות הכשל
-      שמופו למעלה - אחד עוקב אחרי הצעות מחיר שנשלחו ולא הבשילו, אחד בקצה הקליטה, אחד בקצה הגבייה, ואחד
+      שמופו למעלה - אחד בקצה הקליטה, אחד עוקב אחרי הצעות מחיר שנשלחו ולא הבשילו, אחד בקצה הגבייה, ואחד
       בתיאום ביקורי הפיקוח - וכל אחד מהם מוסיף מידע ומכין טיוטות, אבל אף פעולה סופית (שליחה, חתימה, אישור
       תשלום, שיבוץ) לא קורית בלי שבן אדם ראה אותה.
     </p>
 
+
+    <!-- AGENT DIAGRAM A -->
+    <div class="agent-card">
+      <h3>🤖 מודול קליטת פרויקטים</h3>
+      <figure class="flowfig">
+        <div class="diagram-wrap">
+          <svg class="flow" viewBox="0 0 360 900" role="img" aria-label="תרשים פתרון: מודול קליטת פרויקטים, מטופס הלקוח ומייל האדריכל ועד אישור אנושי לשליחה">
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M260,132 L180,188"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M100,132 L180,188"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,282 L180,338"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,432 L180,488"/>
+            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,582 L180,638"/>
+
+            <g>
+              <rect class="d-box accent" x="190" y="38" width="140" height="64" rx="10"/>
+              <text class="d-actor" x="260" y="54" text-anchor="middle">לקוח</text>
+              <text class="d-title" x="260" y="72" text-anchor="middle">ממלא טופס אונליין</text>
+              <text class="d-title" x="260" y="88" text-anchor="middle">לאישור חוזה</text>
+              <rect class="d-chip accent" x="210" y="110" width="100" height="22" rx="11"/>
+              <text class="d-chip-text" x="260" y="125" text-anchor="middle">🔗 שדות חובה</text>
+            </g>
+            <g>
+              <rect class="d-box" x="30" y="38" width="140" height="64" rx="10"/>
+              <text class="d-actor" x="100" y="54" text-anchor="middle">אדריכל</text>
+              <text class="d-title" x="100" y="72" text-anchor="middle">שולח תוכניות /</text>
+              <text class="d-title" x="100" y="88" text-anchor="middle">בקשה במייל</text>
+              <rect class="d-chip" x="50" y="110" width="100" height="22" rx="11"/>
+              <text class="d-chip-text" x="100" y="125" text-anchor="middle">מייל</text>
+            </g>
+            <g>
+              <rect class="d-box agent" x="30" y="188" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="204" text-anchor="middle">🤖 מודול קליטה</text>
+              <text class="d-title" x="180" y="228" text-anchor="middle">קורא טופס + מייל, שולף פרטים</text>
+              <rect class="d-chip" x="125" y="260" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="275" text-anchor="middle">⚙ אוטומטי</text>
+            </g>
+            <g>
+              <rect class="d-box agent" x="30" y="338" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="354" text-anchor="middle">🤖 מודול קליטה</text>
+              <text class="d-title" x="180" y="378" text-anchor="middle">פותח רשומה במסד המרכזי</text>
+              <rect class="d-chip" x="125" y="410" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="425" text-anchor="middle">💻 מסד אחד</text>
+            </g>
+            <g>
+              <rect class="d-box agent" x="30" y="488" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="504" text-anchor="middle">🤖 מודול קליטה</text>
+              <text class="d-title" x="180" y="528" text-anchor="middle">מכין טיוטת מייל אישור לאדריכל</text>
+              <rect class="d-chip" x="125" y="560" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="575" text-anchor="middle">טיוטת מייל</text>
+            </g>
+            <g>
+              <rect class="d-box human" x="30" y="638" width="300" height="64" rx="10"/>
+              <text class="d-actor" x="180" y="654" text-anchor="middle">👤 הצוות</text>
+              <text class="d-title" x="180" y="678" text-anchor="middle">בודק, מאשר ושולח בפועל</text>
+              <rect class="d-chip warn" x="125" y="710" width="110" height="22" rx="11"/>
+              <text class="d-chip-text" x="180" y="725" text-anchor="middle">✓ אישור אנושי</text>
+            </g>
+          </svg>
+        </div>
+      </figure>
+      <dl class="agent-grid">
+        <div><dt>מטרה</dt><dd>להבטיח שפרטי לקוח ופרויקט מתקבלים מלאים כבר מההתחלה (שדות חובה בטופס), במקום לרדוף אחרי מידע חסר בהתכתבויות חזרות ונשנות</dd></div>
+        <div><dt>קלט</dt><dd>טופס אונליין שהלקוח ממלא לאחר קבלת ההצעה (שדות חובה) + מייל נכנס מאדריכל עם תוכניות</dd></div>
+        <div><dt>פלט</dt><dd>רשומה חדשה ומלאה במסד הנתונים + טיוטת מייל אישור לאדריכל, מוכנה לבדיקה</dd></div>
+        <div class="boundary"><strong>גבול אחריות:</strong> המודול לא שולח שום מייל בעצמו ולא מחליט על תוכן הנדסי - רק קולט, מתעד ומכין טיוטה. אילו שדות חובה בטופס - זו החלטה של הצוות, לא של המודול.</div>
+      </dl>
+    </div>
 
     <!-- AGENT DIAGRAM C -->
     <div class="agent-card">
@@ -736,73 +803,6 @@
       </dl>
     </div>
 
-    <!-- AGENT DIAGRAM A -->
-    <div class="agent-card">
-      <h3>🤖 מודול קליטת פרויקטים</h3>
-      <figure class="flowfig">
-        <div class="diagram-wrap">
-          <svg class="flow" viewBox="0 0 360 900" role="img" aria-label="תרשים פתרון: מודול קליטת פרויקטים, מטופס הלקוח ומייל האדריכל ועד אישור אנושי לשליחה">
-            <path class="d-arrow" marker-end="url(#arrowHead)" d="M260,132 L180,188"/>
-            <path class="d-arrow" marker-end="url(#arrowHead)" d="M100,132 L180,188"/>
-            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,282 L180,338"/>
-            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,432 L180,488"/>
-            <path class="d-arrow" marker-end="url(#arrowHead)" d="M180,582 L180,638"/>
-
-            <g>
-              <rect class="d-box accent" x="190" y="38" width="140" height="64" rx="10"/>
-              <text class="d-actor" x="260" y="54" text-anchor="middle">לקוח</text>
-              <text class="d-title" x="260" y="72" text-anchor="middle">ממלא טופס אונליין</text>
-              <text class="d-title" x="260" y="88" text-anchor="middle">לאישור חוזה</text>
-              <rect class="d-chip accent" x="210" y="110" width="100" height="22" rx="11"/>
-              <text class="d-chip-text" x="260" y="125" text-anchor="middle">🔗 שדות חובה</text>
-            </g>
-            <g>
-              <rect class="d-box" x="30" y="38" width="140" height="64" rx="10"/>
-              <text class="d-actor" x="100" y="54" text-anchor="middle">אדריכל</text>
-              <text class="d-title" x="100" y="72" text-anchor="middle">שולח תוכניות /</text>
-              <text class="d-title" x="100" y="88" text-anchor="middle">בקשה במייל</text>
-              <rect class="d-chip" x="50" y="110" width="100" height="22" rx="11"/>
-              <text class="d-chip-text" x="100" y="125" text-anchor="middle">מייל</text>
-            </g>
-            <g>
-              <rect class="d-box agent" x="30" y="188" width="300" height="64" rx="10"/>
-              <text class="d-actor" x="180" y="204" text-anchor="middle">🤖 מודול קליטה</text>
-              <text class="d-title" x="180" y="228" text-anchor="middle">קורא טופס + מייל, שולף פרטים</text>
-              <rect class="d-chip" x="125" y="260" width="110" height="22" rx="11"/>
-              <text class="d-chip-text" x="180" y="275" text-anchor="middle">⚙ אוטומטי</text>
-            </g>
-            <g>
-              <rect class="d-box agent" x="30" y="338" width="300" height="64" rx="10"/>
-              <text class="d-actor" x="180" y="354" text-anchor="middle">🤖 מודול קליטה</text>
-              <text class="d-title" x="180" y="378" text-anchor="middle">פותח רשומה במסד המרכזי</text>
-              <rect class="d-chip" x="125" y="410" width="110" height="22" rx="11"/>
-              <text class="d-chip-text" x="180" y="425" text-anchor="middle">💻 מסד אחד</text>
-            </g>
-            <g>
-              <rect class="d-box agent" x="30" y="488" width="300" height="64" rx="10"/>
-              <text class="d-actor" x="180" y="504" text-anchor="middle">🤖 מודול קליטה</text>
-              <text class="d-title" x="180" y="528" text-anchor="middle">מכין טיוטת מייל אישור לאדריכל</text>
-              <rect class="d-chip" x="125" y="560" width="110" height="22" rx="11"/>
-              <text class="d-chip-text" x="180" y="575" text-anchor="middle">טיוטת מייל</text>
-            </g>
-            <g>
-              <rect class="d-box human" x="30" y="638" width="300" height="64" rx="10"/>
-              <text class="d-actor" x="180" y="654" text-anchor="middle">👤 הצוות</text>
-              <text class="d-title" x="180" y="678" text-anchor="middle">בודק, מאשר ושולח בפועל</text>
-              <rect class="d-chip warn" x="125" y="710" width="110" height="22" rx="11"/>
-              <text class="d-chip-text" x="180" y="725" text-anchor="middle">✓ אישור אנושי</text>
-            </g>
-          </svg>
-        </div>
-      </figure>
-      <dl class="agent-grid">
-        <div><dt>מטרה</dt><dd>להבטיח שפרטי לקוח ופרויקט מתקבלים מלאים כבר מההתחלה (שדות חובה בטופס), במקום לרדוף אחרי מידע חסר בהתכתבויות חזרות ונשנות</dd></div>
-        <div><dt>קלט</dt><dd>טופס אונליין שהלקוח ממלא לאחר קבלת ההצעה (שדות חובה) + מייל נכנס מאדריכל עם תוכניות</dd></div>
-        <div><dt>פלט</dt><dd>רשומה חדשה ומלאה במסד הנתונים + טיוטת מייל אישור לאדריכל, מוכנה לבדיקה</dd></div>
-        <div class="boundary"><strong>גבול אחריות:</strong> המודול לא שולח שום מייל בעצמו ולא מחליט על תוכן הנדסי - רק קולט, מתעד ומכין טיוטה. אילו שדות חובה בטופס - זו החלטה של הצוות, לא של המודול.</div>
-      </dl>
-    </div>
-
     <!-- AGENT DIAGRAM B -->
     <div class="agent-card">
       <h3>🤖 מודול מעקב גבייה</h3>
@@ -819,6 +819,8 @@
             <text class="d-cond" x="197" y="328" text-anchor="middle">לא שולם</text>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M330,428 L250,510"/>
             <path class="d-arrow" marker-end="url(#arrowHead)" d="M170,428 L250,510"/>
+            <rect class="d-label-bg-card" x="101" y="432" width="138" height="31"/>
+            <rect class="d-label-bg-card" x="250" y="432" width="160" height="31"/>
             <text class="d-note" x="170" y="444" text-anchor="middle">⏱ אחרי X ימים בלי</text>
             <text class="d-note" x="170" y="459" text-anchor="middle">מענה → מתריע לאדם</text>
             <text class="d-note" x="330" y="444" text-anchor="middle">🤝 לא ברור לאיזה תיק?</text>
@@ -1042,14 +1044,14 @@
         </thead>
         <tbody>
           <tr>
-            <td class="cmp-area">הצעות מחיר</td>
-            <td class="cmp-problem">בקשות חיות בתיבת מייל בודדת, אין מעקב אחרי הצעות שנשלחו ולא הבשילו, ואין תיעוד למה לקוח לא התקדם.</td>
-            <td class="cmp-solution">מודול שעוקב אחרי כל הצעה שנשלחה, מתריע על הצעות תקועות, ומתעד מי זכינו, מי לא ולמה - בסיס לקבלת החלטות.</td>
-          </tr>
-          <tr>
             <td class="cmp-area">קליטת פרויקט</td>
             <td class="cmp-problem">כל פרויקט נפתח ידנית פעמיים בשני מחשבים באותו שם, בלי קישור; פרטים חשובים חסרים ומתגלים רק בהתכתבות חוזרת.</td>
             <td class="cmp-solution">טופס אישור הזמנה אונליין עם שדות חובה, שפותח פרויקט אחד מסודר במקום אחד - בלי כפילויות ובלי פרטים חסרים.</td>
+          </tr>
+          <tr>
+            <td class="cmp-area">הצעות מחיר</td>
+            <td class="cmp-problem">בקשות חיות בתיבת מייל בודדת, אין מעקב אחרי הצעות שנשלחו ולא הבשילו, ואין תיעוד למה לקוח לא התקדם.</td>
+            <td class="cmp-solution">מודול שעוקב אחרי כל הצעה שנשלחה, מתריע על הצעות תקועות, ומתעד מי זכינו, מי לא ולמה - בסיס לקבלת החלטות.</td>
           </tr>
           <tr>
             <td class="cmp-area">מעקב ומידע</td>
