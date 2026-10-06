@@ -150,6 +150,13 @@
   .agent-grid dt{ color:var(--accent-strong); font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:.03em; }
   .agent-grid dd{ margin:2px 0 0; color:var(--text); }
   .agent-grid .boundary{ grid-column: 1 / -1; background:var(--amber-soft); border-radius:8px; padding:10px 12px; color:var(--amber); font-size:13px; }
+  .preview-grid{ display:grid; grid-template-columns: repeat(2,1fr); gap:18px; }
+  @media (max-width:720px){ .preview-grid{ grid-template-columns:1fr; } }
+  .preview-shot{ margin:0; background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; }
+  .preview-shot img{ width:100%; height:auto; display:block; border-bottom:1px solid var(--border); }
+  .preview-shot figcaption{ padding:12px 14px; font-size:13.5px; color:var(--text); }
+  .preview-shot figcaption strong{ color:var(--accent-strong); font-weight:600; }
+  .preview-note{ color:var(--text-muted); font-size:12.5px; margin-top:4px; }
 
   /* ---------- phases ---------- */
   .phase{
@@ -908,6 +915,36 @@
         <div><dt>פלט</dt><dd>הצעת שיבוץ יומית + עדכון לקבוצת הוואטסאפ המשרדית</dd></div>
         <div class="boundary"><strong>גבול אחריות:</strong> המודול מציע שיבוץ, לא קובע אותו - ירון רואה ומאשר את סידור היום לפני שהוא נשלח לצוות.</div>
       </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="kicker">תצוגה מקדימה</span>
+      <h2>כך תיראה המערכת שלכם</h2>
+    </div>
+    <p class="lede-text">
+      הדמיה של כמה מסכים מרכזיים, כדי להמחיש את התוצר הסופי. הכל נבנה ומותאם במיוחד למשרד -
+      מבנה התשלומים, שלבי הפרויקט והמונחים הם של עבודת קונסטרוקציה, לא תבנית גנרית.
+      <span class="preview-note">המספרים, הלקוחות והשמות שבתמונות הם לדוגמה בלבד.</span>
+    </p>
+    <div class="preview-grid">
+      <figure class="preview-shot">
+        <img src="images/preview-portfolio.png" alt="מסך מעקב פרויקטים ורווחיות - תצוגה מקדימה" loading="lazy">
+        <figcaption><strong>מעקב פרויקטים ורווחיות</strong> - כל הפרויקטים הפעילים במקום אחד, עם רווח גולמי חזוי לכל פרויקט והתראות על חריגה מהתקציב.</figcaption>
+      </figure>
+      <figure class="preview-shot">
+        <img src="images/preview-milestones.png" alt="מסך אבני דרך של פרויקט - תצוגה מקדימה" loading="lazy">
+        <figcaption><strong>אבני דרך ותשלומים</strong> - מבנה <span dir="ltr">15% / 70% / 15%</span> לכל פרויקט, עם תנאי החיוב (אישור אדריכל, מסירת תוכניות, טופס 4) והסכום בכל שלב.</figcaption>
+      </figure>
+      <figure class="preview-shot">
+        <img src="images/preview-collections.png" alt="מסך התקדמות גבייה - תצוגה מקדימה" loading="lazy">
+        <figcaption><strong>מעקב גבייה</strong> - תמונת חוב פתוח מול נגבה, יעד חודשי, וגרף ירידת החוב לאורך זמן.</figcaption>
+      </figure>
+      <figure class="preview-shot">
+        <img src="images/preview-cashflow.png" alt="מסך תזרים מזומנים צפוי - תצוגה מקדימה" loading="lazy">
+        <figcaption><strong>תזרים מזומנים צפוי</strong> - מתי צפוי להיכנס כסף מכל פרויקט, לפי אבני הדרך ותנאי התשלום, קדימה ל-12 חודשים.</figcaption>
+      </figure>
     </div>
   </section>
 
