@@ -284,11 +284,34 @@
     color:var(--accent-strong); border:1px solid var(--border); text-decoration:none;
   }
   .doc-dl:hover{ border-color:var(--accent); }
-  .doc-pages{ display:flex; flex-direction:column; gap:18px; align-items:center; }
-  .doc-pages img{
-    width:100%; max-width:880px; height:auto; display:block;
-    border:1px solid var(--border); border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,.12);
-  }
+
+  /* ---------- simplified-doc native ---------- */
+  .doc-intro .kicker{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:0.08em; color:var(--accent-strong); text-transform:uppercase; }
+  .chg-list{ margin:0; padding-inline-start:20px; display:flex; flex-direction:column; gap:9px; font-size:14.5px; color:var(--text); max-width:72ch; }
+  .proc-meta{ font-size:14px; color:var(--text-muted); max-width:72ch; }
+  .proc-meta strong{ color:var(--text); }
+  .pn{ display:inline-flex; align-items:center; justify-content:center; min-width:17px; height:17px; padding:0 4px; border-radius:999px; background:var(--amber-soft); color:var(--amber); font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:700; line-height:1; }
+  sup.pn{ position:relative; top:-2px; margin-inline-start:3px; }
+  .pain-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; max-width:74ch; }
+  .pain-list li{ display:flex; gap:9px; align-items:flex-start; font-size:14px; color:var(--text-muted); }
+  .pain-list .pn{ flex:none; margin-top:1px; }
+  .q-list{ margin:0; padding-inline-start:20px; display:flex; flex-direction:column; gap:8px; font-size:14.5px; color:var(--text); max-width:72ch; }
+  .subhead{ font-size:16px; font-weight:600; font-family:"IBM Plex Sans Hebrew"; margin-top:2px; }
+  table.layered{ table-layout:fixed; min-width:660px; }
+  table.layered col.c-layer{ width:16%; }
+  table.layered th[scope=col]{ font-size:12.5px; }
+  table.layered th[scope=row]{ background:var(--surface-sunken); text-align:right; font-weight:600; padding:12px 14px; font-size:12.5px; color:var(--text); vertical-align:top; border-bottom:1px solid var(--border); }
+  table.layered td{ font-size:12.5px; }
+  table.layered tbody tr:last-child td, table.layered tbody tr:last-child th[scope=row]{ border-bottom:none; }
+  table.layered tr.row-new td, table.layered tr.row-new th[scope=row]{ background:var(--accent-soft); }
+  table.layered tr.row-approve td, table.layered tr.row-approve th[scope=row]{ background:var(--amber-soft); }
+  table.layered tr.row-out td, table.layered tr.row-out th[scope=row]{ background:var(--surface-sunken); font-weight:600; color:var(--text); }
+  .diagram-wrap.wide{ max-width:720px; }
+  .flow .lane-band{ fill:var(--surface-sunken); opacity:.45; }
+  .flow .lane-line{ stroke:var(--border); stroke-width:1; }
+  .flow .lane-label{ fill:var(--text-muted); font-size:12px; font-weight:600; font-family:"IBM Plex Sans Hebrew",sans-serif; }
+  .flow .d-box.ok{ fill:var(--surface); stroke:#3e9e5e; stroke-width:2; }
+  .flow .d-title.ok{ fill:#2f8a4e; }
 </style>
 
 <div class="page">
@@ -1152,23 +1175,401 @@
   </div><!-- /panel-original -->
 
   <div id="panel-simplified" class="tabpanel" hidden>
+
     <div class="doc-intro">
       <span class="kicker">מבט נוסף</span>
       <h2>תהליכי משרד ההנדסה — גרסה מפושטת</h2>
-      <p>אותה הצעה, מוצגת כמיפוי תהליכים פשוט לקריאה: יום בעבודה של לילי לפני ואחרי, מפת התהליכים (15% / 70% / 15%), וטבלת כאב ← מודול ← מדד הצלחה. נוח למי שמחליט, לא רק למי שבונה.</p>
-      <a class="doc-dl" href="docs/simplified-processes.pdf" download>⬇ הורדת ה-PDF</a>
+      <p>אותה הצעה, מוצגת כמיפוי תהליכים נוח לקריאה: יום בעבודה של לילי לפני ואחרי, מפת התהליכים, וטבלת כאב ← מודול ← מדד הצלחה. נוח למי שמחליט, לא רק למי שבונה.</p>
     </div>
-    <div class="doc-pages">
-      <img src="images/simplified/page-1.png" alt="גרסה מפושטת — עמוד 1" loading="lazy">
-      <img src="images/simplified/page-2.png" alt="גרסה מפושטת — עמוד 2" loading="lazy">
-      <img src="images/simplified/page-3.png" alt="גרסה מפושטת — עמוד 3" loading="lazy">
-      <img src="images/simplified/page-4.png" alt="גרסה מפושטת — עמוד 4" loading="lazy">
-      <img src="images/simplified/page-5.png" alt="גרסה מפושטת — עמוד 5" loading="lazy">
-      <img src="images/simplified/page-6.png" alt="גרסה מפושטת — עמוד 6" loading="lazy">
-      <img src="images/simplified/page-7.png" alt="גרסה מפושטת — עמוד 7" loading="lazy">
-      <img src="images/simplified/page-8.png" alt="גרסה מפושטת — עמוד 8" loading="lazy">
-      <img src="images/simplified/page-9.png" alt="גרסה מפושטת — עמוד 9" loading="lazy">
-    </div>
+
+    <section>
+      <div class="section-head">
+        <span class="kicker">בקצרה</span>
+        <h2>מה השתנה מול ההצעה המקורית</h2>
+      </div>
+      <p class="lede-text">חמישה סוקרים בדקו את ההצעה, כל אחד מזווית אחרת: עיצוב ממשק, חוויית משתמש, מידול תהליכים, אנליזה עסקית והטמעת <span dir="ltr">ERP</span>. כולם הגיעו לאותה מסקנה: תרשימי הזרימה מתאימים למי שבונה את המערכת, ולא למי שמחליט אם לקנות אותה.</p>
+      <ul class="chg-list">
+        <li><strong>שלושה תהליכים במקום ארבעה.</strong> תהליך <span dir="ltr">2</span> (&quot;כספים&quot;) ותהליך <span dir="ltr">4</span> (&quot;התנהלות כספים&quot;) הם אותו מחזור גבייה, ולכן אוחדו. המשימות החודשיות עברו לרשימה נפרדת.</li>
+        <li><strong>נקודת הכאב במרכז.</strong> כל תהליך מוצג כטבלה של &quot;היום&quot; מול &quot;עם המערכת&quot;, והמקומות שבהם דברים נופלים מסומנים וממוספרים.</li>
+        <li><strong>&quot;אדם מאשר&quot; כשורה בטבלה.</strong> רואים בדיוק מה המערכת מכינה, ומה לילי, ירון או איתי מאשרים.</li>
+        <li><strong>הקשר בין העבודה לכסף גלוי.</strong> כל דרישת תשלום (<span dir="ltr">15% / 70% / 15%</span>) מופעלת באבן דרך של הביצוע. בהצעה המקורית הקשר הזה הופיע רק כהערה.</li>
+        <li><strong>מדד הצלחה לכל מודול.</strong> טבלה אחת שעונה על השאלה &quot;למה לשלם&quot;.</li>
+        <li><strong>התרשימים המקוריים של גל נשארים</strong> כנספח טכני למי שבונה את המערכת.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="kicker">התמונה הגדולה</span>
+        <h2>יום בחיי לילי — לפני ואחרי</h2>
+      </div>
+      <p class="lede-text">לילי מעורבת בשלושה מתוך ארבעת המודולים, ולכן היום שלה הוא הדרך המהירה להבין מה משתנה. הלקוחות והשעות בטבלה הם דוגמה.</p>
+      <div class="table-wrap">
+        <table class="compare">
+          <colgroup><col style="width:9%"><col><col></colgroup>
+          <thead><tr><th>שעה</th><th class="th-problem">היום</th><th class="th-solution">עם המערכת</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="cmp-area"><span dir="ltr">08:30</span></td>
+              <td class="cmp-problem">פותחת את האקסל המרכזי ומחפשת שורות אדומות. נכנסת לבנק ולרווחית ובודקת לקוח אחר לקוח מי שילם.</td>
+              <td class="cmp-solution">פותחת מסך אחד: שלושה לקוחות שלא שילמו, והפקדה אחת שכבר הותאמה לתיק שלה.</td>
+            </tr>
+            <tr>
+              <td class="cmp-area"><span dir="ltr">09:00</span></td>
+              <td class="cmp-problem">כותבת מייל תזכורת לכל לקוח, אם היא זוכרת למי צריך. לקוח ששותק שבועיים נשכח לפעמים.</td>
+              <td class="cmp-solution">קוראת שלוש טיוטות תזכורת שהמערכת הכינה, מתקנת מילה ומאשרת. לקוח ששותק אחרי שתי תזכורות מסומן לשיחת טלפון.</td>
+            </tr>
+            <tr>
+              <td class="cmp-area"><span dir="ltr">11:00</span></td>
+              <td class="cmp-problem">ירון מתקשר: &quot;כהן שילם? אני צריך לחתום לו על טפסים.&quot; לילי עוצרת את מה שהיא עושה ובודקת.</td>
+              <td class="cmp-solution">ירון רואה בעצמו בתיק של כהן שהתשלום התקבל, וחותם. לילי לא נקראת.</td>
+            </tr>
+            <tr>
+              <td class="cmp-area"><span dir="ltr">14:00</span></td>
+              <td class="cmp-problem">פרויקט חדש נחתם: לילי פותחת תיקייה בכספים, מקלידה שורה באקסל ומבקשת במייל את הכתובת המדויקת שחסרה.</td>
+              <td class="cmp-solution">הלקוח ממלא טופס עם שדות חובה. הפרויקט נפתח פעם אחת, עם שלושת שלבי התשלום, ולילי מאשרת.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note"><strong>השורה התחתונה:</strong> לילי מפסיקה לחפש ולזכור, ומתחילה לאשר. אף לקוח לא נופל בין הכיסאות, ואף מייל לא יוצא בלי שהיא ראתה אותו.</p>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="kicker">מבט-על</span>
+        <h2>מפת התהליכים</h2>
+      </div>
+      <figure class="flowfig">
+        <div class="diagram-wrap wide">
+          <svg class="flow" viewBox="0 0 680 410" role="img" aria-label="מפת התהליכים: תהליך א מפנייה לחוזה ותהליך ב ביצוע ופיקוח, ששלוש אבני הדרך שלהם בשיעור 15% 70% 15% מזינות את תהליך ג גבייה לכל אבן דרך">
+            <defs><marker id="ahMap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="d-arrowhead" d="M0,0 L10,5 L0,10 Z"/></marker></defs>
+            <path class="d-arrow" marker-end="url(#ahMap)" d="M436,92 L400,92"/>
+            <path class="d-arrow" marker-end="url(#ahMap)" d="M543,140 L543,308"/>
+            <path class="d-arrow" marker-end="url(#ahMap)" d="M320,140 L320,308"/>
+            <path class="d-arrow" marker-end="url(#ahMap)" d="M110,140 L110,308"/>
+            <rect class="d-label-bg-card" x="410" y="64" width="16" height="56"/>
+            <text class="d-cond" x="418" y="92" text-anchor="middle" transform="rotate(-90 418 92)">חוזה נחתם</text>
+            <rect class="d-label-bg-card" x="508" y="150" width="70" height="15"/>
+            <text class="d-actor" x="543" y="161" text-anchor="middle">חוזה</text>
+            <rect class="d-label-bg-card" x="268" y="150" width="104" height="15"/>
+            <text class="d-actor" x="320" y="161" text-anchor="middle">תוכניות ביצוע</text>
+            <rect class="d-label-bg-card" x="80" y="150" width="60" height="15"/>
+            <text class="d-actor" x="110" y="161" text-anchor="middle">טופס 4</text>
+            <rect class="d-label-bg-card" x="507" y="216" width="72" height="17"/>
+            <text class="d-gap-label" x="543" y="229" text-anchor="middle">דרישת 15%</text>
+            <rect class="d-label-bg-card" x="284" y="216" width="72" height="17"/>
+            <text class="d-gap-label" x="320" y="229" text-anchor="middle">דרישת 70%</text>
+            <rect class="d-label-bg-card" x="74" y="216" width="72" height="17"/>
+            <text class="d-gap-label" x="110" y="229" text-anchor="middle">דרישת 15%</text>
+            <g>
+              <rect class="d-box" x="436" y="44" width="214" height="92" rx="10"/>
+              <text class="d-title" x="543" y="70" text-anchor="middle">א · מפנייה לחוזה</text>
+              <text class="d-actor" x="543" y="92" text-anchor="middle">מתחיל: פנייה מלקוח או אדריכל</text>
+              <text class="d-actor" x="543" y="108" text-anchor="middle">מסתיים: חוזה חתום, או הצעה</text>
+              <text class="d-actor" x="543" y="124" text-anchor="middle">שאבדה — עם סיבה</text>
+            </g>
+            <g>
+              <rect class="d-box" x="30" y="44" width="366" height="92" rx="10"/>
+              <text class="d-title" x="213" y="72" text-anchor="middle">ב · ביצוע ופיקוח</text>
+              <text class="d-actor" x="213" y="96" text-anchor="middle">תכנון ← אישור אדריכל ←</text>
+              <text class="d-actor" x="213" y="112" text-anchor="middle">ביקור פיקוח לכל יציקה ← טפסי גמר</text>
+            </g>
+            <g>
+              <rect class="d-box accent" x="30" y="310" width="620" height="84" rx="10"/>
+              <text class="d-title" x="340" y="336" text-anchor="middle">ג · גבייה לכל אבן דרך</text>
+              <text class="d-actor" x="340" y="358" text-anchor="middle">דרישת תשלום ← התאמה מול הבנק ← תזכורת אם שותק ← קבלה ברווחית</text>
+              <text class="d-actor" x="340" y="376" text-anchor="middle">מסתיים: שולם, או הוסלם לאיתי / ירון</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption class="flow-cap">כל אבן דרך בביצוע מפעילה דרישת תשלום. תהליך א מסתיים בחוזה ומעביר לתהליך ב; שלוש אבני הדרך — חוזה, תוכניות ביצוע וטופס 4 — מפעילות כל אחת סבב גבייה בתהליך ג.</figcaption>
+      </figure>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>תהליך</th><th>מי מעורב</th><th>מודולים שנכנסים</th></tr></thead>
+          <tbody>
+            <tr><td><strong>א · מפנייה לחוזה</strong></td><td>לקוח / אדריכל, איתי, ירון, לילי</td><td>קליטת פרויקטים, מעקב הצעות מחיר</td></tr>
+            <tr><td><strong>ב · ביצוע ופיקוח</strong></td><td>יובל, ירון, לילי, אדריכל, קבלן</td><td>תיאום ביקורי פיקוח</td></tr>
+            <tr><td><strong>ג · גבייה לכל אבן דרך</strong></td><td>לילי, לקוח, ירון (לפני חתימה), איתי (הסלמה)</td><td>מעקב גבייה</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="kicker">תהליך א</span>
+        <h2>מפנייה לחוזה</h2>
+      </div>
+      <p class="proc-meta"><strong>מתחיל:</strong> לקוח או אדריכל פונה להצעת מחיר. &nbsp;·&nbsp; <strong>מסתיים:</strong> חוזה חתום עם תיק פרויקט אחד מלא, או הצעה שאבדה עם סיבה מתועדת. היום אין לתהליך סיום מסוג &quot;הצעה שאבדה&quot;, ולכן אף אחד לא עוקב אחריה.</p>
+      <div class="table-wrap">
+        <table class="layered">
+          <colgroup><col class="c-layer"><col><col><col><col></colgroup>
+          <thead><tr><th scope="col">שכבה</th><th scope="col">פנייה</th><th scope="col">הצעת מחיר</th><th scope="col">המתנה לתשובה</th><th scope="col">חתימה ופתיחת פרויקט</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">לקוח / אדריכל</th><td>מתקשר או שולח מייל</td><td>מקבל הצעה במייל</td><td>חושב, משווה, לפעמים שותק</td><td>חותם ומחזיר</td></tr>
+            <tr><th scope="row">איתי / ירון — היום</th><td>הפרטים נשארים בתיבת מייל אחת <sup class="pn">1</sup></td><td>מסמך <span dir="ltr">Word</span> נפרד לכל הצעה</td><td>אין מעקב, והצעה שלא נענתה נשכחת <sup class="pn">2</sup></td><td>מעבירים ללילי במייל; פרטים חסרים מתגלים מאוחר <sup class="pn">3</sup></td></tr>
+            <tr><th scope="row">המערכת — היום</th><td>אין</td><td>אין</td><td>אין</td><td>אין</td></tr>
+            <tr class="row-new"><th scope="row">המערכת — עם המודול</th><td>שולפת שם, כתובת ופרטי קשר מהמייל לרשומת פנייה</td><td>רושמת שההצעה נשלחה ומתי</td><td>מתריעה על הצעה שתקועה מספר ימים שנקבע מראש</td><td>שולחת ללקוח טופס הזמנה עם שדות חובה ופותחת תיק אחד</td></tr>
+            <tr class="row-approve"><th scope="row">אדם מאשר</th><td>איתי / ירון מאשרים שהפרטים נכונים</td><td>איתי / ירון מכינים ושולחים, כמו היום</td><td>איתי / ירון מחליטים אם לפנות, ומסמנים סיבה אם ההצעה אבדה</td><td>לילי מאשרת את פתיחת התיק</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="pain-list">
+        <li><span class="pn">1</span> אין מקום שבו אפשר לחפש פניות.</li>
+        <li><span class="pn">2</span> אין מעקב אחרי הצעות שלא הבשילו, ולכן גם אין אחוז סגירה.</li>
+        <li><span class="pn">3</span> כתובת ופרטי קשר חסרים מתגלים רק בהתכתבות חוזרת, והפרויקט נפתח פעמיים: ב-<span dir="ltr">projects</span> אצל איתי ובכספים אצל לילי.</li>
+      </ul>
+      <p class="note"><strong>פתוח להחלטה:</strong> האם המערכת רק מתריעה לאיתי על הצעה תקועה, או גם מכינה מייל לאדריכל. מייל אוטומטי לאדריכל שעובדים איתו שנים הוא סיכון ליחסים.</p>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="kicker">תהליך ב</span>
+        <h2>ביצוע ופיקוח</h2>
+      </div>
+      <p class="proc-meta"><strong>מתחיל:</strong> חוזה חתום. &nbsp;·&nbsp; <strong>מסתיים:</strong> טפסי הגמר חתומים (טופס 4). לאורך הדרך כל אבן דרך מפעילה דרישת תשלום בתהליך ג. התהליך נמשך חודשים, עם שלושה עד חמישה ביקורי פיקוח, ביקור לכל יציקה.</p>
+      <div class="table-wrap">
+        <table class="layered">
+          <colgroup><col class="c-layer"><col><col><col><col></colgroup>
+          <thead><tr><th scope="col">שכבה</th><th scope="col">תכנון</th><th scope="col">אישור מול האדריכל</th><th scope="col">ביקורי פיקוח (<span dir="ltr">3–5</span>)</th><th scope="col">חתימת טפסי גמר</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">לקוח / קבלן / אדריכל</th><td>האדריכל שולח תוכניות</td><td>מאשר את התכנון</td><td>הקבלן מזמין ביקור לפני יציקה</td><td>מקבל טפסים חתומים</td></tr>
+            <tr><th scope="row">הצוות — היום</th><td>יובל: חישוב סטטי ודוח קרקע. לילי: תוכניות לפיקוד העורף. רישום הפרויקט על דף <sup class="pn">4</sup></td><td>במייל</td><td>ירון משבץ בטלפון ובוואטסאפ, בלי יומן משותף <sup class="pn">5</sup></td><td>ירון מתקשר לבדוק שהלקוח שילם <sup class="pn">6</sup></td></tr>
+            <tr><th scope="row">המערכת — היום</th><td>אין</td><td>אין</td><td>אין</td><td>אין</td></tr>
+            <tr class="row-new"><th scope="row">המערכת — עם המודול</th><td>הפרויקט קיים בתיק אחד, עם אבני הדרך שלו</td><td>מסמנת &quot;תוכניות ביצוע נמסרו&quot;, וזה מפעיל את דרישת ה-<span dir="ltr">70%</span></td><td>מציעה סידור יומי מתוך יומן משותף</td><td>מציגה לירון את סטטוס התשלום בתיק</td></tr>
+            <tr class="row-approve"><th scope="row">אדם מאשר</th><td>אין צורך באישור</td><td>ירון מסמן שאבן הדרך הושגה</td><td>ירון מאשר את הסידור לפני שהוא נשלח לקבוצת הוואטסאפ</td><td>ירון חותם; אם שולם, מעביר הלאה</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="pain-list">
+        <li><span class="pn">4</span> הרישום היחיד על פרויקט פעיל הוא דף שלא מגובה.</li>
+        <li><span class="pn">5</span> תיאום הביקורים נעשה בלי יומן משותף.</li>
+        <li><span class="pn">6</span> כל חתימת טפסים תלויה בשיחת טלפון ללילי.</li>
+      </ul>
+      <p class="note"><strong>פער בהצעה המקורית:</strong> הבדיקה בנקודה 6 לא מכוסה באף מודול. כאן היא מצורפת למודול הגבייה, כי הסטטוס מגיע משם.</p>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="kicker">תהליך ג</span>
+        <h2>גבייה לכל אבן דרך</h2>
+      </div>
+      <p class="proc-meta"><strong>מתחיל:</strong> אבן דרך הושגה — חוזה נחתם (<span dir="ltr">15%</span>), תוכניות ביצוע נמסרו (<span dir="ltr">70%</span>), טופס 4 (<span dir="ltr">15%</span>). &nbsp;·&nbsp; <strong>מסתיים:</strong> שולם והקבלה נשלחה, או שהעניין הוסלם לאיתי / ירון להחלטה. זה התהליך שהופיע פעמיים בהצעה המקורית (תהליכים <span dir="ltr">2</span> ו-<span dir="ltr">4</span>). הוא רץ שלוש פעמים לכל פרויקט.</p>
+      <div class="table-wrap">
+        <table class="layered">
+          <colgroup><col class="c-layer"><col><col><col><col></colgroup>
+          <thead><tr><th scope="col">שכבה</th><th scope="col">דרישת תשלום</th><th scope="col">בדיקה אם שולם</th><th scope="col">לקוח שותק</th><th scope="col">חשבונית וקבלה</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">לקוח</th><td>מקבל מייל</td><td>משלם, או לא</td><td>מתעלם</td><td>מקבל קבלה</td></tr>
+            <tr><th scope="row">לילי — היום</th><td>כותבת מייל וצובעת שורה באקסל באדום</td><td>נכנסת לבנק ולרווחית ובודקת לקוח אחר לקוח</td><td>שולחת תזכורת אם היא זוכרת, ומתקשרת אם מתעלמים <sup class="pn">7</sup></td><td>מפיקה ברווחית בירוק, וזה התיעוד של מי ששילם <sup class="pn">8</sup></td></tr>
+            <tr><th scope="row">המערכת — היום</th><td>אין</td><td>אין</td><td>אין, ואף אחד לא מתריע</td><td>רווחית</td></tr>
+            <tr class="row-new"><th scope="row">המערכת — עם המודול</th><td>מזהה שאבן הדרך הושגה ומכינה טיוטת דרישה</td><td>מתאימה תקבול מהבנק לתיק הלקוח</td><td>אחרי מספר ימים שנקבע מכינה תזכורת; אחרי שתיים מסמנת &quot;להתקשר&quot;</td><td>מסמנת &quot;שולם&quot; ומצביעה על הקבלה ברווחית</td></tr>
+            <tr class="row-approve"><th scope="row">אדם מאשר</th><td>לילי מאשרת ושולחת</td><td>לילי מכריעה רק כשלא ברור לאיזה תיק</td><td>לילי מאשרת תזכורת או מתקשרת; איתי / ירון מחליטים אם לעצור עבודה</td><td>לילי מפיקה ברווחית, כמו היום</td></tr>
+            <tr class="row-out"><th scope="row">מה יוצא מזה</th><td>אף שלב תשלום לא נשכח</td><td>בלי &quot;לזכור לבדוק&quot;</td><td>אף לקוח לא נופל בין הכיסאות</td><td>בלי הקלדה כפולה</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="pain-list">
+        <li><span class="pn">7</span> אין טריגר שיטתי שמזהה לקוח שמתעלם.</li>
+        <li><span class="pn">8</span> סימון ירוק באקסל הוא התיעוד היחיד של מי ששילם.</li>
+      </ul>
+      <div class="section-head"><h3 class="subhead">שתי החלטות שנעשו כאן מעבר להצעה</h3></div>
+      <ul class="chg-list">
+        <li><strong>החשבונית תמיד יוצאת מרווחית.</strong> המערכת לא מפיקה &quot;טיוטת חשבונית&quot; משלה, כדי למנוע מספור כפול.</li>
+        <li><strong>התזכורת הראשונה היא טיוטה שלילי מאשרת,</strong> לא מייל אוטומטי. ההצעה המקורית סותרת את עצמה בנקודה הזו; אם גל מעדיף אחרת, צריך לעדכן אותה בכל המסמך באותה צורה.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="kicker">מסלול הגבייה · מצב עתידי</span>
+        <h2>המערכת מכינה, לילי מאשרת, ההסלמה אצל איתי וירון</h2>
+      </div>
+      <figure class="flowfig">
+        <div class="diagram-wrap wide">
+          <svg class="flow" viewBox="0 0 760 430" role="img" aria-label="מסלול הגבייה לפי אדם: המערכת מכינה טיוטות, לילי מאשרת ושולחת, והסלמה עוברת לאיתי וירון">
+            <defs><marker id="ahSw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="d-arrowhead" d="M0,0 L10,5 L0,10 Z"/></marker></defs>
+            <rect class="lane-band" x="16" y="110" width="736" height="102"/>
+            <line class="lane-line" x1="16" y1="110" x2="752" y2="110"/>
+            <line class="lane-line" x1="16" y1="212" x2="752" y2="212"/>
+            <line class="lane-line" x1="16" y1="312" x2="752" y2="312"/>
+            <line class="lane-line" x1="668" y1="16" x2="668" y2="414"/>
+            <text class="lane-label" x="710" y="67" text-anchor="middle">לקוח</text>
+            <text class="lane-label" x="710" y="165" text-anchor="middle">המערכת</text>
+            <text class="lane-label" x="710" y="266" text-anchor="middle">לילי</text>
+            <text class="lane-label" x="710" y="356" text-anchor="middle">איתי / ירון</text>
+            <path class="d-arrow" marker-end="url(#ahSw)" d="M545,186 L560,238"/>
+            <path class="d-arrow" marker-end="url(#ahSw)" d="M650,238 L650,90"/>
+            <path class="d-arrow" marker-end="url(#ahSw)" d="M520,86 L420,136"/>
+            <path class="d-arrow" marker-end="url(#ahSw)" d="M360,186 L360,238"/>
+            <path class="d-arrow" marker-end="url(#ahSw)" d="M300,162 L244,162"/>
+            <path class="d-arrow" marker-end="url(#ahSw)" d="M150,186 L150,238"/>
+            <path class="d-arrow dashed" marker-end="url(#ahSw)" d="M360,286 L320,338"/>
+            <path class="d-arrow dashed" marker-end="url(#ahSw)" d="M150,286 L230,338"/>
+            <rect class="d-label-bg-card" x="630" y="154" width="44" height="16"/>
+            <text class="d-cond" x="652" y="165" text-anchor="middle">דרישה</text>
+            <rect class="d-label-bg-card" x="440" y="102" width="46" height="16"/>
+            <text class="d-cond" x="463" y="113" text-anchor="middle">תשלום</text>
+            <rect class="d-label-bg-card" x="338" y="204" width="44" height="16"/>
+            <text class="d-cond" x="360" y="215" text-anchor="middle">שולם</text>
+            <rect class="d-label-bg-card" x="236" y="150" width="54" height="16"/>
+            <text class="d-cond" x="263" y="161" text-anchor="middle">לא שולם</text>
+            <rect class="d-label-bg-card" x="300" y="300" width="64" height="16"/>
+            <text class="d-cond" x="332" y="311" text-anchor="middle">סטטוס גלוי</text>
+            <g>
+              <rect class="d-box" x="500" y="40" width="160" height="46" rx="9"/>
+              <text class="d-title" x="580" y="58" text-anchor="middle">מקבל דרישה —</text>
+              <text class="d-title" x="580" y="74" text-anchor="middle">משלם או שותק</text>
+            </g>
+            <g>
+              <rect class="d-box" x="470" y="138" width="150" height="48" rx="9"/>
+              <text class="d-title" x="545" y="166" text-anchor="middle">טיוטת דרישת תשלום</text>
+            </g>
+            <g>
+              <rect class="d-box" x="300" y="138" width="160" height="48" rx="9"/>
+              <text class="d-title" x="380" y="166" text-anchor="middle">מתאימה תקבול לתיק</text>
+            </g>
+            <g>
+              <rect class="d-box" x="60" y="138" width="180" height="48" rx="9"/>
+              <text class="d-title" x="150" y="160" text-anchor="middle">טיוטת תזכורת</text>
+              <text class="d-actor" x="150" y="176" text-anchor="middle">אחרי X ימים</text>
+            </g>
+            <g>
+              <rect class="d-box accent" x="500" y="238" width="160" height="48" rx="9"/>
+              <text class="d-title" x="580" y="266" text-anchor="middle">מאשרת ושולחת</text>
+            </g>
+            <g>
+              <rect class="d-box ok" x="300" y="238" width="160" height="48" rx="9"/>
+              <text class="d-title ok" x="380" y="260" text-anchor="middle">מפיקה קבלה</text>
+              <text class="d-title ok" x="380" y="277" text-anchor="middle">ברווחית ✓</text>
+            </g>
+            <g>
+              <rect class="d-box accent" x="60" y="238" width="180" height="48" rx="9"/>
+              <text class="d-title" x="150" y="260" text-anchor="middle">מאשרת תזכורת</text>
+              <text class="d-actor" x="150" y="277" text-anchor="middle">או מתקשרת</text>
+            </g>
+            <g>
+              <rect class="d-box" x="190" y="338" width="236" height="48" rx="9"/>
+              <text class="d-title" x="308" y="360" text-anchor="middle">ירון רואה סטטוס ·</text>
+              <text class="d-actor" x="308" y="377" text-anchor="middle">מחליטים אם לעצור עבודה</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption class="flow-cap">הפס האפור הוא המערכת. כל מה שיוצא ממנה ללקוח עובר קודם דרך תיבה כחולה של לילי (אדם מאשר). התיבה הירוקה היא סיום תקין של שלב תשלום. הקו המקווקו לירון סוגר את נקודה 6: הוא רואה את הסטטוס בלי להתקשר ללילי.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="kicker">מחוץ לתרשים</span>
+        <h2>שגרה חודשית</h2>
+      </div>
+      <p class="lede-text">אלה משימות קבועות בלוח השנה, בלי טריגר ובלי הסתעפויות, ולכן הן מופיעות כרשימה ולא כתרשים. המודולים בשלב 1 לא נוגעים בהן.</p>
+      <ul class="chg-list">
+        <li><strong>הנהלת חשבונות ותלושי שכר:</strong> לילי, ברווחית.</li>
+        <li><strong>דיווחי פיקוד העורף:</strong> לילי.</li>
+        <li><strong>בדיקת תשלומים מול הבנק:</strong> עוברת לתהליך ג, ומפסיקה להיות משימה נפרדת.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="kicker">גבולות אחריות</span>
+        <h2>מי מכין ומי מאשר</h2>
+      </div>
+      <p class="lede-text">בכל ארבעת המודולים המערכת מכינה ואדם מחליט. הטבלה מחליפה את פסקאות &quot;גבול האחריות&quot; שבהצעה המקורית.</p>
+      <div class="table-wrap">
+        <table class="layered">
+          <colgroup><col class="c-layer"><col><col style="width:12%"><col style="width:16%"><col></colgroup>
+          <thead><tr><th scope="col">מודול</th><th scope="col">המערכת מכינה</th><th scope="col">מי מאשר</th><th scope="col">מי מקבל עדכון</th><th scope="col">מה המערכת לא עושה לבד</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">קליטת פרויקטים</th><td>רשומת פרויקט מהטופס או ממייל האדריכל</td><td>לילי</td><td>איתי, ירון</td><td>פותחת תיק בלי אישור</td></tr>
+            <tr><th scope="row">מעקב הצעות מחיר</th><td>התראה על הצעה תקועה</td><td>איתי / ירון</td><td>אף אחד מעבר למאשר</td><td>פונה ללקוח או לאדריכל</td></tr>
+            <tr><th scope="row">מעקב גבייה</th><td>טיוטת דרישה ותזכורת, התאמת תקבול לתיק</td><td>לילי</td><td>ירון (לפני חתימה), איתי (הסלמה)</td><td>שולחת מייל, מפיקה חשבונית</td></tr>
+            <tr><th scope="row">תיאום ביקורי פיקוח</th><td>סידור יומי מוצע</td><td>ירון</td><td>קבוצת הוואטסאפ</td><td>משבצת או מעדכנת קבלן</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="kicker">למה לשלם</span>
+        <h2>כאב ← מודול ← מדד הצלחה</h2>
+      </div>
+      <p class="lede-text">כל נקודת כאב ממוספרת בתהליכים מקבלת מודול ומדד שאפשר לבדוק אחרי שלושה חודשים. היעדים המספריים ייקבעו רק אחרי שהמשרד יספק נתוני בסיס (ראו הפרק הבא).</p>
+      <div class="table-wrap">
+        <table class="layered">
+          <colgroup><col style="width:26%"><col style="width:7%"><col style="width:16%"><col></colgroup>
+          <thead><tr><th scope="col">כאב</th><th scope="col">איפה</th><th scope="col">מודול</th><th scope="col">מדד הצלחה</th></tr></thead>
+          <tbody>
+            <tr><td><span class="pn">1</span> אין מקום לחפש בו פניות</td><td>א</td><td>קליטת פרויקטים</td><td>כל פנייה רשומה, עם תאריך ומקור</td></tr>
+            <tr><td><span class="pn">2</span> הצעות שנעלמו בלי סיבה</td><td>א</td><td>מעקב הצעות</td><td>לכל הצעה סטטוס תוך <span dir="ltr">14</span> יום, סיבת דחייה מתועדת, ואחוז סגירה נמדד כל רבעון</td></tr>
+            <tr><td><span class="pn">3</span> פרטים חסרים ופתיחה כפולה של התיק</td><td>א</td><td>קליטת פרויקטים</td><td>תיק אחד לפרויקט; אף פרויקט לא נפתח בלי שדות חובה</td></tr>
+            <tr><td><span class="pn">4</span> פרויקט פעיל רשום רק על דף</td><td>ב</td><td>קליטת פרויקטים</td><td>כל הפרויקטים הפעילים נמצאים במערכת, והדף יורד</td></tr>
+            <tr><td><span class="pn">5</span> שיבוץ ביקורים בטלפון ובוואטסאפ</td><td>ב</td><td>תיאום ביקורי פיקוח</td><td>כל הביקורים ביומן; סידור יומי מאושר עד שעה קבועה</td></tr>
+            <tr><td><span class="pn">6</span> שיחה ללילי לפני כל חתימת טפסים</td><td>ב</td><td>מעקב גבייה</td><td>ירון רואה את סטטוס התשלום בלי להתקשר</td></tr>
+            <tr><td><span class="pn">7</span> לקוח ששותק לא מזוהה</td><td>ג</td><td>מעקב גבייה</td><td>כל דרישה פתוחה מעבר לסף מקבלת התראה; ירידה בימי הגבייה ובחוב שמעל <span dir="ltr">60</span> יום</td></tr>
+            <tr><td><span class="pn">8</span> סימון ירוק באקסל הוא התיעוד היחיד</td><td>ג</td><td>מעקב גבייה</td><td>לכל שלב תשלום יש סטטוס ותאריך קבלה; פחות שעות גבייה של לילי בשבוע</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="kicker">לפני שמתחילים</span>
+        <h2>מה לסגור לפני שלב 1</h2>
+      </div>
+      <p class="lede-text">שלב 1 מתומחר ב-<span dir="ltr">22–25</span> אלף ₪ ל-<span dir="ltr">8–10</span> שבועות. כדאי לסגור מראש כמה נתונים וסיכוני הטמעה.</p>
+      <div class="section-head"><h3 class="subhead">חמש שאלות למשרד</h3></div>
+      <ol class="q-list">
+        <li>כמה הצעות נשלחו בשנה האחרונה, כמה נחתמו, וכמה פרויקטים פעילים יש היום?</li>
+        <li>מה החוב הפתוח, כמה ממנו בפיגור של יותר מ-<span dir="ltr">60</span> יום, וכמה שעות בשבוע לילי מקדישה לגבייה?</li>
+        <li>מה בדיוק מפעיל את דרישות ה-<span dir="ltr">70%</span> וה-<span dir="ltr">15%</span>, ומי יודע בזמן אמת שאבן הדרך הושגה?</li>
+        <li>האם ברווחית יש ייצוא או <span dir="ltr">API</span>, ואיך הבנק מודיע על תנועות?</li>
+        <li>מי רשאי לראות נתונים כספיים, והאם מקובל לאחסן נתוני לקוחות בענן מחוץ לישראל?</li>
+      </ol>
+      <div class="section-head"><h3 class="subhead">סיכוני הטמעה</h3></div>
+      <div class="table-wrap">
+        <table class="compare">
+          <colgroup><col style="width:24%"><col><col></colgroup>
+          <thead><tr><th>סיכון</th><th class="th-problem">מה עלול לקרות</th><th class="th-solution">מה מומלץ</th></tr></thead>
+          <tbody>
+            <tr><td class="cmp-area">התאמה לבנק דרך הודעות וואטסאפ</td><td class="cmp-problem">פורמט לא יציב, וחיבור לא רשמי שעלול להיחסם</td><td class="cmp-solution">ייצוא תנועות מהבנק, או קובץ תקבולים מרווחית</td></tr>
+            <tr><td class="cmp-area">המערכת ריקה ביום הראשון</td><td class="cmp-problem">לילי ממשיכה לעבוד באקסל, ויש שני מקורות אמת</td><td class="cmp-solution">טעינת האקסל הקיים, חודש של עבודה במקביל, ותאריך שבו האקסל יורד</td></tr>
+            <tr><td class="cmp-area">&quot;<span dir="ltr">AI</span>&quot; במקום שבו חוק פשוט מספיק</td><td class="cmp-problem">עלות ואי-ודאות מיותרות, ותחזוקה קשה</td><td class="cmp-solution">&quot;לא שולם מספר ימים&quot; ו&quot;הצעה תקועה&quot; הן בדיקות תאריך; <span dir="ltr">AI</span> רק לשליפה ממיילים של אדריכלים</td></tr>
+            <tr><td class="cmp-area">מקור שני לחשבוניות</td><td class="cmp-problem">מספור כפול מול רווחית</td><td class="cmp-solution">רווחית נשארת המקור היחיד לחשבוניות</td></tr>
+            <tr><td class="cmp-area">המוקאפים מבטיחים יותר משלב 1</td><td class="cmp-problem">רווחיות לפרויקט ותזרים ל-<span dir="ltr">12</span> חודשים דורשים נתוני שעות ועלויות שאין להם מקור</td><td class="cmp-solution">להציג רק מסכים שנכללים בשלב 1</td></tr>
+            <tr><td class="cmp-area">&quot;בלי לשנות איך עובדים&quot;</td><td class="cmp-problem">טופס ללקוח, יומן משותף ותיק אחד הם כן שינוי</td><td class="cmp-solution">לומר זאת מראש, ולתת ללילי תפקיד בהגדרת המערכת</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <span class="kicker">נספח</span>
+        <h2>מקרא</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <colgroup><col style="width:28%"><col></colgroup>
+          <thead><tr><th>סימן</th><th>משמעות</th></tr></thead>
+          <tbody>
+            <tr><td>מספר בסוגריים, למשל <span dir="ltr">(7)</span></td><td>נקודת כאב, מקושרת לשורה שלה בטבלת &quot;כאב ← מודול ← מדד&quot;</td></tr>
+            <tr><td>שורת &quot;המערכת — היום&quot;</td><td>מה קורה בלי מערכת; &quot;אין&quot; = אדם עושה הכל ביד</td></tr>
+            <tr><td>שורת &quot;אדם מאשר&quot;</td><td>פעולה שלא קורית בלי אישור של האדם שמופיע בה</td></tr>
+            <tr><td><span dir="ltr">3–5×</span></td><td>שלב שחוזר על עצמו (שלושה שלבי תשלום, ביקור לכל יציקה)</td></tr>
+            <tr><td><span dir="ltr">X</span> ימים</td><td>סף שהמשרד קובע; עדיין לא נקבע</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">המסמך מבוסס על הצעת העבודה של גל — אוטומציה למשרד הנדסה (טיוטה לדיון, <span dir="ltr">4.10.2026</span>).</p>
+    </section>
+
   </div>
 
   <footer>
